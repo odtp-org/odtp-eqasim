@@ -1,2 +1,2 @@
 # eqasim
-Exploration of eqasim
+Exploration of eqasim pipeline
