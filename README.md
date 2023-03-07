@@ -12,13 +12,18 @@ In order to access to the data, please run:
 wget "https://drive.switch.ch/index.php/s/Q32FYIHoQeV6pXL/download" -O data.zip
 unzip data.zip
 rm data.zip
-cp -r config data/config
 ```
 
 ### Build docker 
 
+For amd64 architecture:
 ```
-docker build -t sdsc-ord/eqasim:latest -f .docker/Dockerfile .       
+docker build -t sdsc-ord/eqasim:latest -f .docker/amd64/Dockerfile .       
+```
+
+For arm64 architecture:
+```
+docker build -t sdsc-ord/eqasim:latest -f .docker/arm64/Dockerfile .       
 ```
 
 ### How run docker interactively.
