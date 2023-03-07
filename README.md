@@ -39,3 +39,10 @@ cd ile-de-france
 conda activate ile-de-france
 python3 -m synpp
 ```
+
+#### How to run the simulation: 
+
+```
+cd ../output
+java -Xmx20G -cp ile_de_france_run.jar org.eqasim.ile_de_france.RunSimulation --config-path ile_de_france_config.xml
+```
