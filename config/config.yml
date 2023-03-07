@@ -7,7 +7,7 @@ working_directory: /app/cache
 # This section defines which parts of the pipeline should be run
 run:
   - synthesis.output # To create the output population in the output_path (see below)
-  - matsim.output # Uncomment, if you want to run the full simulation (you'll need Java for that)
+  #- matsim.output # Uncomment, if you want to run the full simulation (you'll need Java for that)
 
 # Here the configuraiton of the pipeline starts
 config:
@@ -29,7 +29,7 @@ config:
   output_path: /app/output
 
   # Only interesting if you run the simulation
-  java_memory: 14G
+  java_memory: 24G
 
   # Uncommented below to enable vehicle fleet generation
   # generate_vehicles_file: True
