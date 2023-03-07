@@ -12,6 +12,7 @@ In order to access to the data, please run:
 wget "https://drive.switch.ch/index.php/s/Q32FYIHoQeV6pXL/download" -O data.zip
 unzip data.zip
 rm data.zip
+cp -r config data/config
 ```
 
 ### Build docker 
@@ -23,7 +24,7 @@ docker build -t sdsc-ord/eqasim:latest -f .docker/Dockerfile .
 ### How run docker interactively.
 
 ```
-docker run -v {ABSOLUTE_PATH_TO_DATA_FOLDER}:/app/data -it caviri/eqasim_ilf:latest 
+docker run -v {ABSOLUTE_PATH_TO_DATA_FOLDER}:/app/data -it sdsc-ord/eqasim:latest 
 ```
 
 ### How to run the synthetic population generation inside docker. 
