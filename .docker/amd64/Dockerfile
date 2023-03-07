@@ -51,12 +51,8 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
     conda install python=3.7 pip 
     
 
-# RUN wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-# RUN bash miniconda.sh -b -p $HOME/miniconda
-# RUN source "$HOME/miniconda/etc/profile.d/conda.sh"
-
 RUN git clone https://github.com/eqasim-org/ile-de-france.git
-COPY ./data/config/environment.yml /app/ile-de-france/
+COPY ./config/environment.yml /app/ile-de-france/
 RUN conda config --set always_yes yes --set changeps1 no
 RUN conda update -q conda
 RUN conda env create -f ile-de-france/environment.yml
@@ -64,11 +60,6 @@ RUN conda env create -f ile-de-france/environment.yml
 ##################################################
 # Java setup
 ##################################################
-# https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.11%2B9/OpenJDK11U-jdk_x64_linux_hotspot_11.0.11_9.tar.gz
-#RUN wget https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u252-b09/OpenJDK8U-jdk_x64_linux_hotspot_8u252b09.tar.gz -O java.tar.gz
-#RUN tar xf java.tar.gz
-#RUN echo $HOME/jdk8u252-b09/bin >> $GITHUB_PATH
-#RUN export PATH=$HOME/jdk8u252-b09/bin:$PATH
 
 # Install OpenJDK-11
 RUN apt-get update && \
@@ -101,7 +92,7 @@ RUN mkdir /app/data
 ## Generate folder with data and output
 RUN mkdir /app/output
 RUN mkdir /app/cache
-COPY ./data/config/config.yml /app/ile-de-france/
+COPY ./config/config.yml /app/ile-de-france/
 #RUN wget https://drive.switch.ch/index.php/s/Q32FYIHoQeV6pXL/download
 #RUN unzip file.zip
 # TODO UNZIP AND PLACE IN DATA FOLDER
