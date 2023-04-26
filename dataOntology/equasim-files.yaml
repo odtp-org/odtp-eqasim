@@ -282,7 +282,7 @@ outputFile: # These files contain the synthetic population generated from the or
 
 simulationInputFile: # These files contain the files for simulating a travel demand in Iles de France on matsim
    - ile_de_france_population:
-     description: # 
+     description: # It contains the agents and their daily plans
      format: xml.gz
      mandatory: true
       parameters: # The parameters have been found in matsim documentation
@@ -293,22 +293,22 @@ simulationInputFile: # These files contain the files for simulating a travel dem
            route: 
      
    - ile_de_france_facilities:
-     description: # 
+     description: # It contains all businesses, services, etc.
      format: xml.gz
      mandatory: true
      
    - ile_de_france_network:
-    description: # 
+    description: # It contains the road and transit network
      format: xml.gz
      mandatory: true
      
    - ile_de_france_households:
-     description: # 
+     description: # It contains additional household informatio
      format: xml.gz
      mandatory: true
      
    - ile_de_france_transit_schedule:
-      description: # 
+      description: # It contains public transport data
       format: xml.gz
       mandatory: true
       parameters:  # The parameters have been found in matsim documentation
@@ -323,7 +323,7 @@ simulationInputFile: # These files contain the files for simulating a travel dem
            departures: 
      
    - ile_de_france_transit_vehicles:
-     description: # 
+     description: # It contains public transport data
      format: xml.gz
      mandatory: true
      parameters: The parameters have been found in matsim documentation
@@ -341,12 +341,12 @@ simulationInputFile: # These files contain the files for simulating a travel dem
            vehicle_id: 
      
    - ile_de_france_config:
-     description: # 
+     description: # It contains the MATSim configuration values
      format: xml
      mandatory: true
      
    - ile_de_france-1.0.6:
-     description: # 
+     description: # It contains a fully packaged version of the simulation code including MATSim and all other dependencies
      format: jar
      mandatory: true
      
@@ -572,7 +572,7 @@ outputFile: # These files contain the synthetic population generated from the or
 
 simulationInputFiles: # These files contain the files for simulating a travel demand in Sao Paulo on matsim
    - sao_paulo_population:
-     description: # 
+     description: # It contains the agents and their daily plans
      format: xml.gz
      mandatory: true
      parameters: # The parameters have been found in matsim documentation
@@ -583,22 +583,22 @@ simulationInputFiles: # These files contain the files for simulating a travel de
            route: 
      
    - sao_paulo_facilities:
-     description: # 
+     description: #  It contains all businesses, services, etc.
      format: xml.gz
      mandatory: true
      
    - sao_paulo_network:
-     description: # 
+     description:  # It contains the road and transit network
      format: xml.gz
      mandatory: true
      
    - sao_paulo_households:
-     description: # 
+     description: # It contains additional household information
      format: xml.gz
      mandatory: true
      
    - sao_paulo_transit_schedule:
-     description: # 
+     description: # It contains the public transport data
      format: xml.gz
      mandatory: true
      parameters:  # The parameters have been found in matsim documentation
@@ -614,7 +614,7 @@ simulationInputFiles: # These files contain the files for simulating a travel de
             
      
    - sao_paulo_transit_vehicles:
-     description: # 
+     description: # It contains the public transport data
      format: xml.gz
      mandatory: true
      parameters: # The parameters have been found in matsim documentation
@@ -632,12 +632,12 @@ simulationInputFiles: # These files contain the files for simulating a travel de
            vehicle_id: 
      
    - sao_paulo_config:
-     description: # 
+     description: # It contains the MATSim configuration values
      format: xml
      mandatory: true
      
    - sao_paulo-1.2.0:
-     description: # 
+     description: # It contains a fully packaged version of the simulation code including MATSim and all other dependencies
      format: jar
      mandatory: true
 
