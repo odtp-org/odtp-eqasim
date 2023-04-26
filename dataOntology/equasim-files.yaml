@@ -1,0 +1,643 @@
+usecase: Iles-de-France
+
+inputFile: # These files contain the original datasets of Iles de france to generate a synthetic population
+  - Census: 
+    repository: data/rp_2019
+    description: # Census data containing the socio-demographic information of people
+    mandatory: true
+    files: 
+      - FD_INDCVIZA_2019: # filename
+        format: csv
+        link: https://www.insee.fr/fr/statistiques/6544333#dictionnaire
+        parameters:
+
+  - Population_totals: # aggregated population totals
+    repository: data/rp_2019
+    description: # The "Population" sub-municipal database provides data on the characteristics of the population by gender, age, socio-professional category and nationality category
+    mandatory: true
+    files: 
+       - base-ic-evol-struct-pop-2019: # filename
+         format: xls
+         link: https://www.insee.fr/fr/statistiques/6543200#dictionnaire
+         parameters:
+
+  - Origin-destination: # Two-location data at the commune level
+    repository: data/rp_2019
+    description: # Two-location data at the commune level, describing the characteristics of the individual, his or her household and primary residence
+    mandatory: true
+    files: 
+      - FD_MOBPRO_2029: # filename
+        format: csv
+        link: https://www.insee.fr/fr/statistiques/6456056#dictionnaire
+        parameters:
+
+      - FD_MOBSCO_2019: # filename
+        format: csv
+        link: https://www.insee.fr/fr/statistiques/6456052#dictionnaire
+        parameters:
+
+  - Income_tax: # The tax data set 
+    repository: data/filosofi_2019
+    description: # Social and fiscal localized income
+    mandatory: true
+    files: 
+      - FILO2019_DISP_COM.: # filename
+        format: xlsx
+        link: https://www.insee.fr/fr/statistiques/6036907#dictionnaire
+        parameters:
+      - FILO2019_DISP_REG.: # filename
+        format: xlsx
+        link: https://www.insee.fr/fr/statistiques/6036907#dictionnaire
+        parameters:
+
+  - Service_and_facility_census: # The census of services and facilities 
+    repository: data/bpe_2021
+    description: # Geolocated equipment (commerce, services, health...) 
+    mandatory: true
+    files: 
+      - bpe21_ensemble_xy: # filename
+        format: csv
+        link: https://www.insee.fr/fr/statistiques/3568638#dictionnaire
+        parameters:
+
+  - National household travel survey: # National Transport and Travel Survey (ENTD)
+    repository: data/entd_2008
+    description: # Knowledge of the movements of households residing in metropolitan France and their use of both public and individual means of transport
+    mandatory: true
+    link: https://www.statistiques.developpement-durable.gouv.fr/enquete-nationale-transports-et-deplacements-entd-2008
+    files: 
+      - Q_individu: # filename
+        format: csv
+        link: https://data.progedo.fr/documents/adisp/lil-0634/lil-0634dcod.pdf
+        parameters:
+      - Q_tcm_individu: # filename
+        format: csv
+        link: https://data.progedo.fr/documents/adisp/lil-0634/lil-0634dcod.pdf
+        parameters:
+      - Q_menage: # filename
+        format: csv
+        link: https://data.progedo.fr/documents/adisp/lil-0634/lil-0634dcod.pdf
+        parameters:
+      - Q_tcm_menage_0: # filename
+        format: csv
+        link: https://data.progedo.fr/documents/adisp/lil-0634/lil-0634dcod.pdf
+        parameters:
+      - K_deploc: # filename
+        format: csv
+        link: https://data.progedo.fr/documents/adisp/lil-0634/lil-0634dcod.pdf
+        parameters:
+      - Q_ind_lieu_teg: # filename
+        format: csv
+        link: https://data.progedo.fr/documents/adisp/lil-0634/lil-0634dcod.pdf
+        parameters:
+      
+  - (Optional) Regional household travel survey: # Regional household travel survey
+    repository: data/egt_2010
+    description: # Comprehensive transport surveys that is not available on open access
+    mandatory: no
+    files: 
+      - Menages_semaine: # filename
+        format: csv
+        parameters:
+      - Personnes_semaine: # filename
+        format: csv
+        parameters:
+      - Deplacements_semaine: # filename
+        format: csv
+        parameters:
+
+  - IRIS zoning system: # The IRIS zoning system
+    repository: data/iris_2021
+    description: # It allows to map the contours of Iris and to integrate them in a GIS
+    mandatory: true
+    files: 
+      - CONTOURS-IRIS: # filename
+        format: cpg
+        link: https://geoservices.ign.fr/documentation/donnees/vecteur/contoursiris
+        parameters:
+      - CONTOURS-IRIS: # filename
+        format: dbf
+        link: https://geoservices.ign.fr/documentation/donnees/vecteur/contoursiris
+        parameters:
+      - CONTOURS-IRIS: # filename
+        format: prj
+        link: https://geoservices.ign.fr/documentation/donnees/vecteur/contoursiris
+        parameters:
+      - CONTOURS-IRIS: # filename
+        format: shp
+        link: https://geoservices.ign.fr/documentation/donnees/vecteur/contoursiris
+        parameters:
+      - CONTOURS-IRIS: # filename
+        format: shx
+        link: https://geoservices.ign.fr/documentation/donnees/vecteur/contoursiris
+        parameters:
+
+  - Zoning registry: # zoning registry by INSEE
+    repository: data/codes_2021
+    description: # zoning registry by INSEE that establishes a connection between the identifiers of IRIS, municipalities, departments and regions
+    mandatory: true
+    files: 
+      - reference_IRIS_geo2021: # filename
+        format: csv
+        link: https://www.insee.fr/fr/metadonnees/definitions
+        parameters:
+
+  - Enterprise census: # The enterprise census of France
+    repository: data/sirene
+    description: # Information on companies and establishments registered in the Sirene inter-administrative directory
+    mandatory: true
+    files: 
+       - StockEtablissement_utf8: # filename
+         format: csv
+         link: https://sirene.fr/static-resources/htm/v_sommaire.htm
+         parameters:
+      - StockUniteLegale_utf8: # filename
+         format: csv
+         link: https://sirene.fr/static-resources/htm/v_sommaire.htm
+         parameters:
+
+  - Enterprise census geolocation: # The geolocated enterprise census
+    repository: data/sirene
+    description: # Geolocation of establishments in the Sirene directory, for statistical studies
+    mandatory: true
+    files: 
+      - GeolocalisationEtablissement_Sirene_pour_etudes_statistiques_utf8: # filename
+         format: csv
+         link: https://www.data.gouv.fr/fr/datasets/r/9f6c2157-3c89-4e8d-8473-9894348c84cb
+         parameters:
+
+  - Buildings database: # French Buildings database
+    repository: data/bdtopo/
+    description: # It provides a 3D vectorial description of the elements of a territory and its infrastructures.
+    mandatory: true
+    files: 
+      - BATIMENT: # filename
+         format: cpg
+         link: https://geoservices.ign.fr/sites/default/files/2021-12/DC_Metadonnees_2-0.pdf
+         parameters:
+      - BATIMENT: # filename
+         format: dbf
+         link: https://geoservices.ign.fr/sites/default/files/2021-12/DC_Metadonnees_2-0.pdf
+         parameters:
+      - BATIMENT: # filename
+         format: prj
+         link: https://geoservices.ign.fr/sites/default/files/2021-12/DC_Metadonnees_2-0.pdf
+         parameters:
+      - BATIMENT: # filename
+         format: shp
+         link: https://geoservices.ign.fr/sites/default/files/2021-12/DC_Metadonnees_2-0.pdf
+         parameters:
+      - BATIMENT: # filename
+         format: shx
+         link: https://geoservices.ign.fr/sites/default/files/2021-12/DC_Metadonnees_2-0.pdf
+         parameters:
+
+outputFile: # These files contain the synthetic population generated from the original datasets of Iles de France
+  - meta: 
+     description: # 
+     format: json
+     mandatory: true
+     parameters: 
+       sampling_rate: 
+       hts: 
+       random_seed: 
+       created: 
+       version: 
+       commit:
+
+  - persons: 
+     description: # 
+     format: csv
+     mandatory: true
+     parameters: 
+       person_id:
+       household_id:
+       age:
+       employed:
+       sex:
+       socioprofessional_class:
+       has_driving_license:
+       has_pt_subscription:
+       census_person_id:
+       hts_id:
+
+  - households: 
+     description: # 
+     format: json
+     mandatory: true
+     parameters: 
+       household_id:
+       car_availability:
+       bike_availability:
+       number_of_vehicles:
+       number_of_bikes:
+       income:
+       census_household_id:
+  
+  - activities.csv: 
+     description: # 
+     format: csv
+     mandatory: true
+     parameters: 
+       person_id:
+       household_id:
+       activity_index:
+       preceding_trip_index:
+       following_trip_index:
+       purpose:
+       start_time:
+       end_time:
+       is_first:
+       is_last:
+        
+  - activities: 
+     description: # 
+     format:  gpkg  # This extension consists of a geographic information system implemented as a SQLite database container containing data and metadata tables with typical definitions, format limitations, integrity assertions and content constraints. 
+     mandatory: true
+     parameters: 
+       
+
+  - trips.csv: 
+     description: # 
+     format: csv
+     mandatory: true
+     parameters: 
+      person_id:
+      trip_index:
+      preceding_activity_index:
+      following_activity_index:
+      departure_time:
+      arrival_time:
+      mode: # mode of transportation
+      preceding_purpose:
+      following_purpose:
+      is_first:
+      is_last:
+
+  - trips: 
+     description: # 
+     format: gpkg
+     mandatory: true
+     parameters: 
+
+simulationInputFile: # These files contain the files for simulating a travel demand in Iles de France on matsim
+   - ile_de_france_population:
+     description: # 
+     format: xml.gz
+     mandatory: true
+      parameters: # The parameters have been found in matsim documentation
+       person_id:
+       plan_score: 
+         - activity: 
+           leg: 
+           route: 
+     
+   - ile_de_france_facilities:
+     description: # 
+     format: xml.gz
+     mandatory: true
+     
+   - ile_de_france_network:
+    description: # 
+     format: xml.gz
+     mandatory: true
+     
+   - ile_de_france_households:
+     description: # 
+     format: xml.gz
+     mandatory: true
+     
+   - ile_de_france_transit_schedule:
+      description: # 
+      format: xml.gz
+      mandatory: true
+      parameters:  # The parameters have been found in matsim documentation
+       transit_schedule:
+         transitStops: 
+         minimalTransferTimes: 
+         - transitLine: 
+           transitRoute: 
+           transportMode:
+           routeProfile: 
+           route: 
+           departures: 
+     
+   - ile_de_france_transit_vehicles:
+     description: # 
+     format: xml.gz
+     mandatory: true
+     parameters: The parameters have been found in matsim documentation
+       vehicleType: 
+         description:
+         capacity:
+           seats: 
+           standingRoom: 
+           length: 
+           maximumVelocity:
+           accessTime: 
+           egressTime:
+           doorOperation: 
+           passengerCarEquivalents: 
+           vehicle_id: 
+     
+   - ile_de_france_config:
+     description: # 
+     format: xml
+     mandatory: true
+     
+   - ile_de_france-1.0.6:
+     description: # 
+     format: jar
+     mandatory: true
+     
+
+
+
+usecase: sao_paulo
+
+inputFile: # These files contain the original datasets of Sao Paulo to generate a synthetic population
+  - Census: 
+    repository: data/Census/
+    description: # Census data containing the socio-demographic information of people living in Brasil
+    mandatory: true
+    files: 
+      - Censo.2010.brasil.amostra.10porcento: # filename
+        format: sav
+        parameters:
+
+  - Sao Paulo household travel survey : # The Sao Paulo household travel survey is available from Transportes Metropolitanos
+    repository: data/HTS
+    description: # 
+    mandatory: true
+    files: 
+       - OD_2017: # filename
+         format: dbf
+         parameters:
+
+  - OpenStreetMap data : # OpenStreetMap data 
+    repository: data/osm
+    description: # 
+    mandatory: true
+    files: 
+       - sao_paulo: # filename
+         format: osm
+         parameters:
+
+       - sao_paulo.osm: # (optional) Only to run a full simulation of the scenario 
+         format: gz
+         mandatory: no
+         parameters:
+  
+  - Educational facilities : # The private and public school of Sao Paulo region 
+    repository: data/
+    description: 
+    mandatory: true
+    files: 
+       - escolas_enderecos: # filename
+         format: csv
+         parameters:
+
+  - Census zoning system: # The Census zoning system is available from Centro de Estudos da Metrópole
+    repository: data/spatial
+    description: 
+    mandatory: true
+    files: 
+       - SC2010_RMSP_CEM_V3: # filename
+         format: cpg
+         parameters:
+        
+       - SC2010_RMSP_CEM_V3: # filename
+         format: shp
+         parameters:
+
+       - SC2010_RMSP_CEM_V3: # filename
+         format: dbf
+         parameters:
+        
+       - SC2010_RMSP_CEM_V3: # filename
+         format: prj
+         parameters:
+        
+       - SC2010_RMSP_CEM_V3: # filename
+         format: shx
+         parameters:
+        
+        - SC2010_RMSP_CEM_V3_center: # filename
+         format: cpg
+         parameters:
+        
+       - SC2010_RMSP_CEM_V3_center: # filename
+         format: shp
+         parameters:
+
+       - SC2010_RMSP_CEM_V3_center: # filename
+         format: dbf
+         parameters:
+        
+       - SC2010_RMSP_CEM_V3_center: # filename
+         format: prj
+         parameters:
+        
+       - SC2010_RMSP_CEM_V3_center: # filename
+         format: shx
+         parameters:
+
+         - SC2010_RMSP_CEM_V3_city: # filename
+         format: cpg
+         parameters:
+        
+       - SC2010_RMSP_CEM_V3_city: # filename
+         format: shp
+         parameters:
+
+       - SC2010_RMSP_CEM_V3_city: # filename
+         format: dbf
+         parameters:
+        
+       - SC2010_RMSP_CEM_V3_city: # filename
+         format: prj
+         parameters:
+        
+       - SC2010_RMSP_CEM_V3_city: # filename
+         format: shx
+         parameters:
+
+       - SC2010_RMSP_CEM_V3_all_state: # filename
+         format: cpg
+         parameters:
+        
+       - SC2010_RMSP_CEM_V3_all_state: # filename
+         format: shp
+         parameters:
+
+       - SC2010_RMSP_CEM_V3_all_state: # filename
+         format: dbf
+         parameters:
+        
+       - SC2010_RMSP_CEM_V3_all_state: # filename
+         format: prj
+         parameters:
+        
+       - SC2010_RMSP_CEM_V3_all_state: # filename
+         format: shx
+         parameters:
+
+
+  -  Public transit schedule: # (optional) Only to run a full simulation of the scenario 
+     repository: data/gtfs
+     description: # 
+     mandatory: no
+     files: 
+       - emtu: # filename
+         format: zip
+         parameters:
+
+       - sptrans: # filename
+         format: zip
+         parameters:
+
+outputFile: # These files contain the synthetic population generated from the original datasets of Sao Paulo
+  - meta: 
+     description: # 
+     format: json
+     mandatory: true
+     parameters: 
+       sampling_rate: 
+       random_seed:
+       created:
+
+  - persons: 
+     description: # 
+     format: csv
+     mandatory: true
+     parameters: 
+       person_id:
+       household_id:
+       age:
+       employment:
+       sex:
+       has_pt_subscription:
+       has_license:
+       census_person_id:
+       hts_person_id:
+       residence_area_index:
+
+  - households: 
+     description: # 
+     format: json
+     mandatory: true
+     parameters: 
+       household_id:
+       binary_car_availability:
+       household_income:
+  
+  - activities.csv: 
+     description: # 
+     format: csv
+     mandatory: true
+     parameters: 
+        
+  - activities: 
+     description: # 
+     format: gpkg
+     mandatory: true
+     parameters: 
+       person_id:
+       activity_id:
+       purpose:
+       start_time:
+       end_time:
+       is_last:
+
+  - trips.csv: 
+     description: # 
+     format: csv
+     mandatory: true
+     parameters: 
+       person_id:
+       trip_id:
+       preceeding_activity_index:
+       following_activity_index:
+       departure_time:
+       arrival_time:
+       mode:
+       preceeding_purpose:
+       following_purpose:
+
+  - trips: 
+     description: # 
+     format: gpkg
+     mandatory: true
+     parameters: 
+
+simulationInputFiles: # These files contain the files for simulating a travel demand in Sao Paulo on matsim
+   - sao_paulo_population:
+     description: # 
+     format: xml.gz
+     mandatory: true
+     parameters: # The parameters have been found in matsim documentation
+       person_id:
+       plan_score: 
+         - activity: 
+           leg: 
+           route: 
+     
+   - sao_paulo_facilities:
+     description: # 
+     format: xml.gz
+     mandatory: true
+     
+   - sao_paulo_network:
+     description: # 
+     format: xml.gz
+     mandatory: true
+     
+   - sao_paulo_households:
+     description: # 
+     format: xml.gz
+     mandatory: true
+     
+   - sao_paulo_transit_schedule:
+     description: # 
+     format: xml.gz
+     mandatory: true
+     parameters:  # The parameters have been found in matsim documentation
+       transit_schedule:
+         transitStops: 
+         minimalTransferTimes: 
+         - transitLine: 
+           transitRoute: 
+           transportMode:
+           routeProfile: 
+           route: 
+           departures: 
+            
+     
+   - sao_paulo_transit_vehicles:
+     description: # 
+     format: xml.gz
+     mandatory: true
+     parameters: # The parameters have been found in matsim documentation
+       vehicleType: 
+         description:
+         capacity:
+           seats: 
+           standingRoom: 
+           length: 
+           maximumVelocity:
+           accessTime: 
+           egressTime:
+           doorOperation: 
+           passengerCarEquivalents: 
+           vehicle_id: 
+     
+   - sao_paulo_config:
+     description: # 
+     format: xml
+     mandatory: true
+     
+   - sao_paulo-1.2.0:
+     description: # 
+     format: jar
+     mandatory: true
+
