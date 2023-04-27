@@ -3,12 +3,12 @@ usecase: Iles-de-France
 inputFile: # These files contain the original datasets of Iles de france to generate a synthetic population
   - Census: 
     repository: data/rp_2019
-    description: # Census data containing the socio-demographic information of people
+    description: # Census data containing the socio-demographic information of people.
     mandatory: true
     files: 
       - FD_INDCVIZA_2019: # filename
         format: csv
-        link: https://www.insee.fr/fr/statistiques/6544333#dictionnaire
+        dictionnary: https://www.insee.fr/fr/statistiques/6544333#dictionnaire
         parameters:
 
   - Population_totals: # aggregated population totals
@@ -18,7 +18,7 @@ inputFile: # These files contain the original datasets of Iles de france to gene
     files: 
        - base-ic-evol-struct-pop-2019: # filename
          format: xls
-         link: https://www.insee.fr/fr/statistiques/6543200#dictionnaire
+         dictionnary: https://www.insee.fr/fr/statistiques/6543200#dictionnaire
          parameters:
 
   - Origin-destination: # Two-location data at the commune level
@@ -28,12 +28,12 @@ inputFile: # These files contain the original datasets of Iles de france to gene
     files: 
       - FD_MOBPRO_2029: # filename
         format: csv
-        link: https://www.insee.fr/fr/statistiques/6456056#dictionnaire
+        dictionnary: https://www.insee.fr/fr/statistiques/6456056#dictionnaire
         parameters:
 
       - FD_MOBSCO_2019: # filename
         format: csv
-        link: https://www.insee.fr/fr/statistiques/6456052#dictionnaire
+        dictionnary: https://www.insee.fr/fr/statistiques/6456052#dictionnaire
         parameters:
 
   - Income_tax: # The tax data set 
@@ -43,11 +43,11 @@ inputFile: # These files contain the original datasets of Iles de france to gene
     files: 
       - FILO2019_DISP_COM.: # filename
         format: xlsx
-        link: https://www.insee.fr/fr/statistiques/6036907#dictionnaire
+        dictionnary: https://www.insee.fr/fr/statistiques/6036907#dictionnaire
         parameters:
       - FILO2019_DISP_REG.: # filename
         format: xlsx
-        link: https://www.insee.fr/fr/statistiques/6036907#dictionnaire
+        dictionnary: https://www.insee.fr/fr/statistiques/6036907#dictionnaire
         parameters:
 
   - Service_and_facility_census: # The census of services and facilities 
@@ -57,38 +57,38 @@ inputFile: # These files contain the original datasets of Iles de france to gene
     files: 
       - bpe21_ensemble_xy: # filename
         format: csv
-        link: https://www.insee.fr/fr/statistiques/3568638#dictionnaire
+        dictionnary: https://www.insee.fr/fr/statistiques/3568638#dictionnaire
         parameters:
 
   - National household travel survey: # National Transport and Travel Survey (ENTD)
     repository: data/entd_2008
     description: # Knowledge of the movements of households residing in metropolitan France and their use of both public and individual means of transport
     mandatory: true
-    link: https://www.statistiques.developpement-durable.gouv.fr/enquete-nationale-transports-et-deplacements-entd-2008
+    dictionnary: https://www.statistiques.developpement-durable.gouv.fr/enquete-nationale-transports-et-deplacements-entd-2008
     files: 
       - Q_individu: # filename
         format: csv
-        link: https://data.progedo.fr/documents/adisp/lil-0634/lil-0634dcod.pdf
+        dictionnary: https://data.progedo.fr/documents/adisp/lil-0634/lil-0634dcod.pdf
         parameters:
       - Q_tcm_individu: # filename
         format: csv
-        link: https://data.progedo.fr/documents/adisp/lil-0634/lil-0634dcod.pdf
+        dictionnary: https://data.progedo.fr/documents/adisp/lil-0634/lil-0634dcod.pdf
         parameters:
       - Q_menage: # filename
         format: csv
-        link: https://data.progedo.fr/documents/adisp/lil-0634/lil-0634dcod.pdf
+        dictionnary: https://data.progedo.fr/documents/adisp/lil-0634/lil-0634dcod.pdf
         parameters:
       - Q_tcm_menage_0: # filename
         format: csv
-        link: https://data.progedo.fr/documents/adisp/lil-0634/lil-0634dcod.pdf
+        dictionnary: https://data.progedo.fr/documents/adisp/lil-0634/lil-0634dcod.pdf
         parameters:
       - K_deploc: # filename
         format: csv
-        link: https://data.progedo.fr/documents/adisp/lil-0634/lil-0634dcod.pdf
+        dictionnary: https://data.progedo.fr/documents/adisp/lil-0634/lil-0634dcod.pdf
         parameters:
       - Q_ind_lieu_teg: # filename
         format: csv
-        link: https://data.progedo.fr/documents/adisp/lil-0634/lil-0634dcod.pdf
+        dictionnary: https://data.progedo.fr/documents/adisp/lil-0634/lil-0634dcod.pdf
         parameters:
       
   - (Optional) Regional household travel survey: # Regional household travel survey
@@ -99,11 +99,14 @@ inputFile: # These files contain the original datasets of Iles de france to gene
       - Menages_semaine: # filename
         format: csv
         parameters:
+        dictionnary: # not available
       - Personnes_semaine: # filename
         format: csv
+        dictionnary: # not available
         parameters:
       - Deplacements_semaine: # filename
         format: csv
+        dictionnary: # not available
         parameters:
 
   - IRIS zoning system: # The IRIS zoning system
@@ -113,23 +116,23 @@ inputFile: # These files contain the original datasets of Iles de france to gene
     files: 
       - CONTOURS-IRIS: # filename
         format: cpg
-        link: https://geoservices.ign.fr/documentation/donnees/vecteur/contoursiris
+        dictionnary: https://geoservices.ign.fr/documentation/donnees/vecteur/contoursiris
         parameters:
       - CONTOURS-IRIS: # filename
         format: dbf
-        link: https://geoservices.ign.fr/documentation/donnees/vecteur/contoursiris
+        dictionnary: https://geoservices.ign.fr/documentation/donnees/vecteur/contoursiris
         parameters:
       - CONTOURS-IRIS: # filename
         format: prj
-        link: https://geoservices.ign.fr/documentation/donnees/vecteur/contoursiris
+        dictionnary: https://geoservices.ign.fr/documentation/donnees/vecteur/contoursiris
         parameters:
       - CONTOURS-IRIS: # filename
         format: shp
-        link: https://geoservices.ign.fr/documentation/donnees/vecteur/contoursiris
+        dictionnary: https://geoservices.ign.fr/documentation/donnees/vecteur/contoursiris
         parameters:
       - CONTOURS-IRIS: # filename
         format: shx
-        link: https://geoservices.ign.fr/documentation/donnees/vecteur/contoursiris
+        dictionnary: https://geoservices.ign.fr/documentation/donnees/vecteur/contoursiris
         parameters:
 
   - Zoning registry: # zoning registry by INSEE
@@ -139,7 +142,7 @@ inputFile: # These files contain the original datasets of Iles de france to gene
     files: 
       - reference_IRIS_geo2021: # filename
         format: csv
-        link: https://www.insee.fr/fr/metadonnees/definitions
+        dictionnary: https://www.insee.fr/fr/metadonnees/definitions
         parameters:
 
   - Enterprise census: # The enterprise census of France
@@ -149,11 +152,11 @@ inputFile: # These files contain the original datasets of Iles de france to gene
     files: 
        - StockEtablissement_utf8: # filename
          format: csv
-         link: https://sirene.fr/static-resources/htm/v_sommaire.htm
+         dictionnary: https://sirene.fr/static-resources/htm/v_sommaire.htm
          parameters:
       - StockUniteLegale_utf8: # filename
          format: csv
-         link: https://sirene.fr/static-resources/htm/v_sommaire.htm
+         dictionnary: https://sirene.fr/static-resources/htm/v_sommaire.htm
          parameters:
 
   - Enterprise census geolocation: # The geolocated enterprise census
@@ -163,7 +166,7 @@ inputFile: # These files contain the original datasets of Iles de france to gene
     files: 
       - GeolocalisationEtablissement_Sirene_pour_etudes_statistiques_utf8: # filename
          format: csv
-         link: https://www.data.gouv.fr/fr/datasets/r/9f6c2157-3c89-4e8d-8473-9894348c84cb
+         dictionnary: https://www.data.gouv.fr/fr/datasets/r/9f6c2157-3c89-4e8d-8473-9894348c84cb
          parameters:
 
   - Buildings database: # French Buildings database
@@ -173,28 +176,48 @@ inputFile: # These files contain the original datasets of Iles de france to gene
     files: 
       - BATIMENT: # filename
          format: cpg
-         link: https://geoservices.ign.fr/sites/default/files/2021-12/DC_Metadonnees_2-0.pdf
+         dictionnary: https://geoservices.ign.fr/sites/default/files/2021-12/DC_Metadonnees_2-0.pdf
          parameters:
       - BATIMENT: # filename
          format: dbf
-         link: https://geoservices.ign.fr/sites/default/files/2021-12/DC_Metadonnees_2-0.pdf
+         dictionnary: https://geoservices.ign.fr/sites/default/files/2021-12/DC_Metadonnees_2-0.pdf
          parameters:
       - BATIMENT: # filename
          format: prj
-         link: https://geoservices.ign.fr/sites/default/files/2021-12/DC_Metadonnees_2-0.pdf
+         dictionnary: https://geoservices.ign.fr/sites/default/files/2021-12/DC_Metadonnees_2-0.pdf
          parameters:
       - BATIMENT: # filename
          format: shp
-         link: https://geoservices.ign.fr/sites/default/files/2021-12/DC_Metadonnees_2-0.pdf
+         dictionnary: https://geoservices.ign.fr/sites/default/files/2021-12/DC_Metadonnees_2-0.pdf
          parameters:
       - BATIMENT: # filename
          format: shx
-         link: https://geoservices.ign.fr/sites/default/files/2021-12/DC_Metadonnees_2-0.pdf
+         dictionnary: https://geoservices.ign.fr/sites/default/files/2021-12/DC_Metadonnees_2-0.pdf
          parameters:
 
-outputFile: # These files contain the synthetic population generated from the original datasets of Iles de France
+  - Road network: # The road network in the pipeline is based on OpenStreetMap data
+    repository: data/osm_idf
+    description: # The road network in the pipeline is based on OpenStreetMap data
+    mandatory: true
+    files: 
+      - ile-de-france-220101.osm.pbf: # filename
+         format: osm.pbf
+         dictionnary: https://download.geofabrik.de/europe/france/ile-de-france-220101.osm.pbf
+         parameters:
+
+  - Public transit schedule: # A digital public transport schedule for Île-de-France
+    repository: data/gtfs_idf
+    description: # A digital public transport schedule for Île-de-France is available from Île-de-France mobilités.
+    mandatory: true
+    files: 
+      - IDFM-gtfs.zip: # filename
+         format: zip
+         dictionnary: https://eu.ftp.opendatasoft.com/stif/GTFS/opendata_gtfs.pdf
+         parameters:
+
+outputFile: # These files contain the synthetic population generated from the original datasets of Iles de France.
   - meta: 
-     description: # 
+     description: # It contains some meta data.
      format: json
      mandatory: true
      parameters: 
@@ -206,7 +229,7 @@ outputFile: # These files contain the synthetic population generated from the or
        commit:
 
   - persons: 
-     description: # 
+     description: # It contains all the persons in the population with their respective sociodemographic attributes.
      format: csv
      mandatory: true
      parameters: 
@@ -222,7 +245,7 @@ outputFile: # These files contain the synthetic population generated from the or
        hts_id:
 
   - households: 
-     description: # 
+     description: # It contains all the households in the population with their respective sociodemographic attributes.
      format: json
      mandatory: true
      parameters: 
@@ -235,7 +258,7 @@ outputFile: # These files contain the synthetic population generated from the or
        census_household_id:
   
   - activities.csv: 
-     description: # 
+     description: # It contains all the activities in the daily mobility patterns of these people including attributes on the purposes of activities or transport modes for the trips.
      format: csv
      mandatory: true
      parameters: 
@@ -250,15 +273,15 @@ outputFile: # These files contain the synthetic population generated from the or
        is_first:
        is_last:
         
-  - activities: 
-     description: # 
+  - activities.gpkg: 
+     description: # It represents the same activities, but in the spatial GPKG format. The activities contain point geometries to indicate where they happen.
      format:  gpkg  # This extension consists of a geographic information system implemented as a SQLite database container containing data and metadata tables with typical definitions, format limitations, integrity assertions and content constraints. 
      mandatory: true
      parameters: 
        
 
   - trips.csv: 
-     description: # 
+     description: # It contain all the trips in the daily mobility patterns of these people including attributes on the purposes of activities or transport modes for the trips.
      format: csv
      mandatory: true
      parameters: 
@@ -274,8 +297,8 @@ outputFile: # These files contain the synthetic population generated from the or
       is_first:
       is_last:
 
-  - trips: 
-     description: # 
+  - trips.gpkg: 
+     description: # It represents the same trips but in the spatial GPKG format. The trips file contains line geometries to indicate origin and destination of each trip.
      format: gpkg
      mandatory: true
      parameters: 
@@ -363,111 +386,133 @@ inputFile: # These files contain the original datasets of Sao Paulo to generate 
     files: 
       - Censo.2010.brasil.amostra.10porcento: # filename
         format: sav
+        dictionnary: # not available
         parameters:
 
   - Sao Paulo household travel survey : # The Sao Paulo household travel survey is available from Transportes Metropolitanos
     repository: data/HTS
-    description: # 
+    description: # The Sao Paulo household travel survey 
     mandatory: true
     files: 
        - OD_2017: # filename
          format: dbf
+         dictionnary: https://transparencia.metrosp.com.br/dataset/pesquisa-origem-e-destino/resource/4362eaa3-c0aa-410a-a32b-37355c091075
          parameters:
 
   - OpenStreetMap data : # OpenStreetMap data 
     repository: data/osm
-    description: # 
+    description: # OpenStreetMap data for the southeast of Brazil where we can extract the Sao Paulo Metropolitan region with osmosis tool.
     mandatory: true
     files: 
-       - sao_paulo: # filename
+       - sao_paulo.osm: # filename
          format: osm
+         dictionnary: # not available
          parameters:
 
-       - sao_paulo.osm: # (optional) Only to run a full simulation of the scenario 
+       - sao_paulo.osm.gz: # (optional) Only to run a full simulation of the scenario. The sao_paulo.osm file is packed into a gz format.
          format: gz
          mandatory: no
+         dictionnary: # not available
          parameters:
   
   - Educational facilities : # The private and public school of Sao Paulo region 
     repository: data/
-    description: 
+    description: The private and public school of Sao Paulo region are available from Dados Abertos da Educação
     mandatory: true
     files: 
        - escolas_enderecos: # filename
          format: csv
+         dictionnary: https://dados.educacao.sp.gov.br/dataset/endere%C3%A7os-de-escolas/resource/dc399c35-b15e-49b4-a533-4f18849013df#{}
          parameters:
 
   - Census zoning system: # The Census zoning system is available from Centro de Estudos da Metrópole
     repository: data/spatial
-    description: 
+    description: #  The Census zoning system is available from Centro de Estudos da Metrópole
     mandatory: true
     files: 
        - SC2010_RMSP_CEM_V3: # filename
          format: cpg
+         dictionnary: # not available
          parameters:
-        
+
        - SC2010_RMSP_CEM_V3: # filename
          format: shp
+         dictionnary: # not available
          parameters:
 
        - SC2010_RMSP_CEM_V3: # filename
          format: dbf
+         dictionnary: # not available
          parameters:
         
        - SC2010_RMSP_CEM_V3: # filename
          format: prj
+         dictionnary: # not available
          parameters:
         
        - SC2010_RMSP_CEM_V3: # filename
          format: shx
+         dictionnary: # not available
          parameters:
         
         - SC2010_RMSP_CEM_V3_center: # filename
          format: cpg
+         dictionnary: # not available
          parameters:
         
        - SC2010_RMSP_CEM_V3_center: # filename
          format: shp
+         dictionnary: # not available
          parameters:
 
        - SC2010_RMSP_CEM_V3_center: # filename
          format: dbf
+         dictionnary: # not available
          parameters:
         
        - SC2010_RMSP_CEM_V3_center: # filename
          format: prj
+         dictionnary: # not available
          parameters:
         
        - SC2010_RMSP_CEM_V3_center: # filename
          format: shx
+         dictionnary: # not available
          parameters:
 
          - SC2010_RMSP_CEM_V3_city: # filename
          format: cpg
+         dictionnary: # not available
          parameters:
         
        - SC2010_RMSP_CEM_V3_city: # filename
          format: shp
+         dictionnary: # not available
          parameters:
 
        - SC2010_RMSP_CEM_V3_city: # filename
          format: dbf
+         dictionnary: # not available
          parameters:
         
        - SC2010_RMSP_CEM_V3_city: # filename
          format: prj
+         dictionnary: # not available
          parameters:
         
        - SC2010_RMSP_CEM_V3_city: # filename
          format: shx
+         dictionnary: # not available
          parameters:
 
        - SC2010_RMSP_CEM_V3_all_state: # filename
          format: cpg
+         dictionnary: # not available
          parameters:
         
        - SC2010_RMSP_CEM_V3_all_state: # filename
          format: shp
+         dictionnary: # not available
          parameters:
 
        - SC2010_RMSP_CEM_V3_all_state: # filename
@@ -476,29 +521,33 @@ inputFile: # These files contain the original datasets of Sao Paulo to generate 
         
        - SC2010_RMSP_CEM_V3_all_state: # filename
          format: prj
+         dictionnary: # not available
          parameters:
         
        - SC2010_RMSP_CEM_V3_all_state: # filename
          format: shx
+         dictionnary: # not available
          parameters:
 
 
   -  Public transit schedule: # (optional) Only to run a full simulation of the scenario 
      repository: data/gtfs
-     description: # 
+     description: # The public transit schedule in sao paulo
      mandatory: no
      files: 
        - emtu: # filename
          format: zip
+         dictionnary: https://github.com/MobilityData/mobility-database-catalogs
          parameters:
 
        - sptrans: # filename
          format: zip
+         dictionnary: https://github.com/MobilityData/mobility-database-catalogs
          parameters:
 
 outputFile: # These files contain the synthetic population generated from the original datasets of Sao Paulo
   - meta: 
-     description: # 
+     description: # It contains some meta data
      format: json
      mandatory: true
      parameters: 
@@ -507,7 +556,7 @@ outputFile: # These files contain the synthetic population generated from the or
        created:
 
   - persons: 
-     description: # 
+     description: # It contains all the persons in the population with their respective sociodemographic attributes.
      format: csv
      mandatory: true
      parameters: 
@@ -523,7 +572,7 @@ outputFile: # These files contain the synthetic population generated from the or
        residence_area_index:
 
   - households: 
-     description: # 
+     description: # It contains all the households in the population with their respective sociodemographic attributes.
      format: json
      mandatory: true
      parameters: 
@@ -532,14 +581,13 @@ outputFile: # These files contain the synthetic population generated from the or
        household_income:
   
   - activities.csv: 
-     description: # 
+     description: # It contains all the activities in the daily mobility patterns of these people including attributes on the purposes of activities or transport modes for the trips.
      format: csv
      mandatory: true
      parameters: 
         
-  - activities: 
-     description: # 
-     format: gpkg
+  - activities.gpkg: 
+     description: # It represents the same activities, but in the spatial GPKG format. The activities contain point geometries to indicate where they happen.
      mandatory: true
      parameters: 
        person_id:
@@ -550,7 +598,7 @@ outputFile: # These files contain the synthetic population generated from the or
        is_last:
 
   - trips.csv: 
-     description: # 
+     description: # It contain all the trips in the daily mobility patterns of these people including attributes on the purposes of activities or transport modes for the trips.
      format: csv
      mandatory: true
      parameters: 
@@ -564,18 +612,18 @@ outputFile: # These files contain the synthetic population generated from the or
        preceeding_purpose:
        following_purpose:
 
-  - trips: 
-     description: # 
+  - trips.gpkg: 
+     description: # It represents the same trips but in the spatial GPKG format. The trips file contains line geometries to indicate origin and destination of each trip.
      format: gpkg
      mandatory: true
      parameters: 
 
-simulationInputFiles: # These files contain the files for simulating a travel demand in Sao Paulo on matsim
+simulationInputFiles: # These files contain the files for simulating a travel demand in Sao Paulo on matsim.
    - sao_paulo_population:
-     description: # It contains the agents and their daily plans
+     description: # It contains the agents and their daily plans.
      format: xml.gz
      mandatory: true
-     parameters: # The parameters have been found in matsim documentation
+     parameters: # The parameters have been found in matsim documentation.
        person_id:
        plan_score: 
          - activity: 
