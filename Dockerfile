@@ -48,6 +48,15 @@ RUN wget https://github.com/openstreetmap/osmosis/releases/download/0.48.3/osmos
 RUN tar xf /tmp/osmosis.tgz -C /tmp/osmosis
 
 ##################################################
+# GDAL Setup
+##################################################
+
+# Install OpenJDK-11
+RUN apt-get update && \
+    apt-get install -y libgdal-dev && \
+    apt-get clean;
+
+##################################################
 # Eqasim setup
 ##################################################
 
@@ -58,10 +67,7 @@ RUN pip install -r /tmp/requirements.txt
 # Scenario setup
 ##################################################
 
-RUN mkdir /app/data
-RUN mkdir /app/output
-RUN mkdir /app/cache
-
+RUN mkdir /app /app/data /app/output /app/cache
 WORKDIR /app
 
 RUN git clone ${EQASIM_SCENARIO}
