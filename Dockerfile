@@ -80,6 +80,7 @@ RUN mkdir /odtp && \
     /odtp/odtp-workdir/output && \
     /odtp/odtp-output
 
+COPY ./app /odtp/odtp-app
 WORKDIR /odtp
 ## How to share the config file as user? Maybe placing in volume? 
 ENTRYPOINT ["bash"]
