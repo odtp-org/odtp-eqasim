@@ -64,13 +64,22 @@ COPY requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt
 
 ##################################################
-# Scenario setup
+# ODTP Preparation
 ##################################################
 
-RUN mkdir /app /app/data /app/output /app/cache
-WORKDIR /app
 
-RUN git clone ${EQASIM_SCENARIO}
+# I'm not fully convinced of this folder organization. 
+# Workdir folders should be defined in the startup bash
 
+RUN mkdir /odtp && \
+    /odtp/odtp-app && \
+    /odtp/odtp-volume && \
+    /odtp/odtp-workdir && \
+    /odtp/odtp-workdir/data && \ 
+    /odtp/odtp-workdir/cache && \
+    /odtp/odtp-workdir/output && \
+    /odtp/odtp-output
+
+WORKDIR /odtp
 ## How to share the config file as user? Maybe placing in volume? 
 ENTRYPOINT ["bash"]
