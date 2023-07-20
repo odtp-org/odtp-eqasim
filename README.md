@@ -1,7 +1,23 @@
-# eqasim
-Exploration of eqasim pipeline
+# ODTP Eqasim Component
+ODTP component for running Eqasim. 
 
-## First very dirty docker version.
+This component contains: 
+1. Data loaders
+2. Eqasim synthetic population generation
+3. Matsim testing
+
+Development phases: 
+
+1. [x] Basic docker container that allows to run IDF scenario
+2. [ ] Docker container compatible with more than one scenarios
+3. [ ] ODTP single-component prototype
+4. [ ] Eqasim division in 3 components:
+    - Data loaders
+    - Eqasim
+    - Matsim
+
+
+## First docker
 
 Based in the pipeline for IDF a docker version able to run the synthetic dataset has been created. In order to build that docker you need to select 
 one of the two compatible architecture `arm64` (Apple Silicon) or `amd64`. 
@@ -46,3 +62,4 @@ python3 -m synpp
 cd ../output
 java -Xmx20G -cp ile_de_france_run.jar org.eqasim.ile_de_france.RunSimulation --config-path ile_de_france_config.xml
 ```
+
