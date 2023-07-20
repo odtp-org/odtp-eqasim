@@ -1,15 +1,4 @@
-ARG VERSION_BUILD
-
-#FROM --platform=linux/amd64 ubuntu:latest
-FROM ubuntu
-ENV PYTHONUNBUFFERED=true
-WORKDIR /app
-
-
-#LABEL org.opencontainers.image.source=https://github.com/caviri/ILF_docker
-LABEL org.opencontainers.image.description="ILF pipeline"
-LABEL org.opencontainers.image.licenses=Apache-2.0
-LABEL org.opencontainers.image.version ${VERSION_BUILD}
+FROM --platform=linux/amd64 python
 
 ##################################################
 # Ubuntu setup
@@ -30,41 +19,22 @@ RUN apt-get update && apt-get -y upgrade \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-
-##################################################
-# Conda setup
-##################################################
-
-ENV PATH="/root/miniconda3/bin:${PATH}"
-ARG PATH="/root/miniconda3/bin:${PATH}"
-
-RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-    && mkdir /root/.conda \
-    && bash Miniconda3-latest-Linux-x86_64.sh -b \
-    && rm -f Miniconda3-latest-Linux-x86_64.sh \
-    && echo "Running $(conda --version)" && \
-    conda init bash && \
-    . /root/.bashrc && \
-    conda update conda && \
-    conda create -n python-app && \
-    conda activate python-app && \
-    conda install python=3.7 pip 
-    
-
-RUN git clone https://github.com/eqasim-org/ile-de-france.git
-COPY ./config/environment.yml /app/ile-de-france/
-RUN conda config --set always_yes yes --set changeps1 no
-RUN conda update -q conda
-RUN conda env create -f ile-de-france/environment.yml
-
 ##################################################
 # Java setup
 ##################################################
 
-# Install OpenJDK-11
+# # Install OpenJDK-11
+# RUN apt-get update && \
+#     apt-get install -y openjdk-11-jre-headless default-jdk && \
+#     apt-get clean;
+
+RUN echo $(uname -a)
+
+
 RUN apt-get update && \
     apt-get install -y openjdk-11-jre-headless default-jdk && \
     apt-get clean;
+
 
 ##################################################
 # Maven setup
@@ -75,19 +45,31 @@ RUN tar xf maven.tar.gz
 RUN export PATH=$HOME/apache-maven-3.6.3/bin:$PATH
 
 ##################################################
-# Maven setup
+# Osmosis setup
 ##################################################
 
 RUN wget https://github.com/openstreetmap/osmosis/releases/download/0.48.3/osmosis-0.48.3.tgz -O osmosis.tgz
-RUN mkdir /app/osmosis
-RUN tar xf /app/osmosis.tgz -C /app/osmosis
+RUN mkdir /tmp/osmosis
+RUN tar xf /tmp/osmosis.tgz -C /tmp/osmosis
 
 ##################################################
 # Eqasim setup
 ##################################################
 
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
+
+##################################################
+# Scenario setup
+##################################################
+
 RUN mkdir /app/data
-## Generate folder with data and output
 RUN mkdir /app/output
 RUN mkdir /app/cache
-COPY ./config/config.yml /app/ile-de-france/
+
+WORKDIR /app
+
+RUN git clone ${EQASIM_SCENARIO}
+
+## How to share the config file as user? Maybe placing in volume? 
+ENTRYPOINT ["bash"]
