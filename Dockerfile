@@ -1,4 +1,7 @@
-FROM --platform=linux/amd64 python
+FROM ubuntu:latest
+
+RUN apt update
+RUN apt install python3 python3-pip -y
 
 ##################################################
 # Ubuntu setup
@@ -23,24 +26,16 @@ RUN apt-get update && apt-get -y upgrade \
 # Java setup
 ##################################################
 
-# # Install OpenJDK-11
-# RUN apt-get update && \
-#     apt-get install -y openjdk-11-jre-headless default-jdk && \
-#     apt-get clean;
-
-RUN echo $(uname -a)
-
-
+# Install OpenJDK-11
 RUN apt-get update && \
     apt-get install -y openjdk-11-jre-headless default-jdk && \
     apt-get clean;
-
 
 ##################################################
 # Maven setup
 ##################################################
 
-RUN wget http://mirror.easyname.ch/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz -O maven.tar.gz
+RUN wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.6.3/apache-maven-3.6.3-bin.tar.gz -O maven.tar.gz
 RUN tar xf maven.tar.gz
 RUN export PATH=$HOME/apache-maven-3.6.3/bin:$PATH
 
@@ -48,8 +43,8 @@ RUN export PATH=$HOME/apache-maven-3.6.3/bin:$PATH
 # Osmosis setup
 ##################################################
 
-RUN wget https://github.com/openstreetmap/osmosis/releases/download/0.48.3/osmosis-0.48.3.tgz -O osmosis.tgz
 RUN mkdir /tmp/osmosis
+RUN wget https://github.com/openstreetmap/osmosis/releases/download/0.48.3/osmosis-0.48.3.tgz -O /tmp/osmosis.tgz
 RUN tar xf /tmp/osmosis.tgz -C /tmp/osmosis
 
 ##################################################
