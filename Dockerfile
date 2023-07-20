@@ -71,13 +71,13 @@ RUN pip install -r /tmp/requirements.txt
 # I'm not fully convinced of this folder organization. 
 # Workdir folders should be defined in the startup bash
 
-RUN mkdir /odtp && \
-    /odtp/odtp-app && \
-    /odtp/odtp-volume && \
-    /odtp/odtp-workdir && \
-    /odtp/odtp-workdir/data && \ 
-    /odtp/odtp-workdir/cache && \
-    /odtp/odtp-workdir/output && \
+RUN mkdir /odtp \
+    /odtp/odtp-app \
+    /odtp/odtp-volume \
+    /odtp/odtp-workdir \
+    /odtp/odtp-workdir/data \ 
+    /odtp/odtp-workdir/cache \
+    /odtp/odtp-workdir/output \
     /odtp/odtp-output
 
 COPY ./app /odtp/odtp-app
