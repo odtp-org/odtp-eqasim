@@ -8,7 +8,7 @@ palettable
 scikit-learn
 shapely
 tqdm
-pytables
+tables
 xlrd
 openpyxl
 pip
