@@ -18,3 +18,4 @@ python-levenshtein==0.12.1
 pytest
 xlwt
 pysal
+py7zr

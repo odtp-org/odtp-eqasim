@@ -75,7 +75,6 @@ RUN mkdir /odtp \
     /odtp/odtp-app \
     /odtp/odtp-volume \
     /odtp/odtp-workdir \
-    /odtp/odtp-workdir/data \ 
     /odtp/odtp-workdir/cache \
     /odtp/odtp-workdir/output \
     /odtp/odtp-output
