@@ -26,6 +26,8 @@ In order to access to the data, please run:
 
 ```
 wget "https://drive.switch.ch/index.php/s/Q32FYIHoQeV6pXL/download" -O data.zip
+
+wget "https://drive.switch.ch/index.php/s/nubhDEgA90g5c81/download" -O data.zip
 unzip data.zip
 rm data.zip
 ```
