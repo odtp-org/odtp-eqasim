@@ -7,8 +7,12 @@
 
 # Actions #
 # A1 - Clone github
-# https://github.com/eqasim-org/ile-de-france.git
-git clone $1 /odtp/odtp-workdir/scenario
+# git clone https://github.com/eqasim-org/ile-de-france.git /odtp/odtp-workdir/scenario
+# git reset --hard 18aa1d4
+# git checkout 18aa1d4
+git clone $1 /odtp/odtp-workdir/scenario #GITHUB
+git checkout $2 #COMMIT
+
 
 # A2 - Process configuration
 cp /odtp/odtp-volume/config.yml /odtp/odtp-workdir/scenario/config.yml
