@@ -1,8 +1,24 @@
 # This file should contain basic component information such as 
 
-- name
-- author
-- description
-- variables
-- inputSchema
-- outputSchema
+- name: eqasim
+- repo: https://github.com/SDSC-ORD/odtp-eqasim 
+- author: Author_Test
+- description: Synthetic population for Matsim
+- arguments:
+  - hts: [entd, egt]
+  - sampling_rate: 0.001
+  - random_seed: 1234
+  - java_memory: 24G
+  - generate_vehicles_file: True
+  - generted_vehicels_method: fleet_sample
+  - vehicles_data_year: 2015
+- volume:
+  - config.yml: /odtp/odtp-volume/config.yml
+  - data: /odtp/odtp-volume/data
+- ports:
+  - api: 7100
+  - logger: 7101
+- devices:
+  - gpus: False
+- inputSchema: inputSchema.ttl
+- outputSchema: outputSchema.ttl
