@@ -82,4 +82,4 @@ RUN mkdir /odtp \
 COPY ./app /odtp/odtp-app
 WORKDIR /odtp
 ## How to share the config file as user? Maybe placing in volume? 
-ENTRYPOINT ["bash"]
+ENTRYPOINT ["bash", "/odtp/odtp-app/startup.sh"]
