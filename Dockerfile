@@ -19,6 +19,7 @@ RUN apt-get update && apt-get -y upgrade \
     g++ \
     gcc \
     htop \
+    zip \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
