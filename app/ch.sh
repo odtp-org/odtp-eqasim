@@ -2,9 +2,9 @@
 
 # Actions
 # A1 - Clone github
-git clone https://github.com/eqasim-org/ile-de-france.git /odtp/odtp-workdir/scenario
+git clone https://gitlab.ethz.ch/ivt-vpl/populations/ch-zh-synpop /odtp/odtp-workdir/scenario
 cd /odtp/odtp-workdir/scenario
-git checkout 18aa1d4
+
 
 # A2 - Process configuration
 cp /odtp/odtp-volume/config.yml /odtp/odtp-workdir/scenario/config.yml
@@ -20,11 +20,4 @@ python3 -m synpp
 # A4 - Take output and export it
 zip -r output.zip /odtp/odtp-workdir/output
 mv output.zip /odtp/odtp-volume/output.zip
-cp /odtp/odtp-workdir/log.txt /odtp/odtp-volume/log.txt
-
-## O1 - Save Snapshot in s3
-
-
-## 02 - Upload log in MongoDB
-
-# A5 - Kill Container
+#cp /odtp/odtp-workdir/log.txt /odtp/odtp-volume/log.txt

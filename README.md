@@ -65,3 +65,30 @@ cd ../output
 java -Xmx20G -cp ile_de_france_run.jar org.eqasim.ile_de_france.RunSimulation --config-path ile_de_france_config.xml
 ```
 
+## Error
+```
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/usr/local/lib/python3.10/dist-packages/synpp/__main__.py", line 14, in <module>
+    synpp.run_from_yaml(config_path)
+  File "/usr/local/lib/python3.10/dist-packages/synpp/pipeline.py", line 886, in run_from_yaml
+    Synpp.build_from_yml(path).run_pipeline()
+  File "/usr/local/lib/python3.10/dist-packages/synpp/pipeline.py", line 910, in run_pipeline
+    return run(definitions, self.config, self.working_directory, flowchart_path=flowchart_path,
+  File "/usr/local/lib/python3.10/dist-packages/synpp/pipeline.py", line 810, in run
+    result = stage["wrapper"].execute(context)
+  File "/usr/local/lib/python3.10/dist-packages/synpp/pipeline.py", line 88, in execute
+    return self.instance.execute(context)
+  File "/odtp/odtp-workdir/scenario/synthesis/population/spatial/home/zones.py", line 39, in execute
+    df_households["commune_id"].cat.add_categories(
+  File "/usr/local/lib/python3.10/dist-packages/pandas/core/accessor.py", line 112, in f
+
+  
+    return self._delegate_method(name, *args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/pandas/core/arrays/categorical.py", line 2475, in _delegate_method
+    res = method(*args, **kwargs)
+TypeError: Categorical.add_categories() got an unexpected keyword argument 'inplace'
+```

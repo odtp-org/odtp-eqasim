@@ -52,7 +52,6 @@ RUN tar xf /tmp/osmosis.tgz -C /tmp/osmosis
 # GDAL Setup
 ##################################################
 
-# Install OpenJDK-11
 RUN apt-get update && \
     apt-get install -y libgdal-dev && \
     apt-get clean;
