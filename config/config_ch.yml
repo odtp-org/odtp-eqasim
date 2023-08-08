@@ -6,10 +6,13 @@ dryrun: false
 # Requested stages
 run:
   - synthesis.population.enriched
+  - matsim.output
 
 # These are configuration options that we use in the pipeline
 config:
   threads: 4
+  osmosis_binary: /tmp/osmosis/bin/osmosis
+  maven_binary: /tmp/apache-maven-3.6.3/bin/mvn
   random_seed: 0
   hot_deck_matching_runners: 2
   disable_progress_bar: false
@@ -21,3 +24,4 @@ config:
   hafas_date: 01.10.2018
   data_path: /odtp/odtp-workdir/data
   output_path: /odtp/odtp-workdir/output
+  output_id: test

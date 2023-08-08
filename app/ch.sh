@@ -4,6 +4,7 @@
 # A1 - Clone github
 git clone https://gitlab.ethz.ch/ivt-vpl/populations/ch-zh-synpop /odtp/odtp-workdir/scenario
 cd /odtp/odtp-workdir/scenario
+git switch develop
 
 
 # A2 - Process configuration

@@ -36,9 +36,10 @@ RUN apt-get update && \
 # Maven setup
 ##################################################
 
-RUN wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.6.3/apache-maven-3.6.3-bin.tar.gz -O maven.tar.gz
-RUN tar xf maven.tar.gz
-RUN export PATH=$HOME/apache-maven-3.6.3/bin:$PATH
+RUN mkdir /tmp/maven
+RUN wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.6.3/apache-maven-3.6.3-bin.tar.gz -O /tmp/maven.tar.gz
+RUN tar xf /tmp/maven.tar.gz -C /tmp/maven 
+RUN export PATH=/tmp/apache-maven-3.6.3/bin:$PATH
 
 ##################################################
 # Osmosis setup

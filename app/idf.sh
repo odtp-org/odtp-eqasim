@@ -18,7 +18,7 @@ python3 -m synpp
 #java -Xmx20G -cp ile_de_france_run.jar org.eqasim.ile_de_france.RunSimulation --config-path ile_de_france_config.xml
 
 # A4 - Take output and export it
-zip -r output.zip /odtp/odtp-workdir/output
+zip -r output.ziplsl /odtp/odtp-workdir/output
 mv output.zip /odtp/odtp-volume/output.zip
 cp /odtp/odtp-workdir/log.txt /odtp/odtp-volume/log.txt
 
