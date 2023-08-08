@@ -12,7 +12,7 @@ run:
 config:
   threads: 4
   osmosis_binary: /tmp/osmosis/bin/osmosis
-  maven_binary: /tmp/apache-maven-3.6.3/bin/mvn
+  maven_binary: /tmp/maven/apache-maven-3.6.3/bin/mvn
   random_seed: 0
   hot_deck_matching_runners: 2
   disable_progress_bar: false
