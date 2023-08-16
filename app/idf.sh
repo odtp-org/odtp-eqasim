@@ -2,7 +2,11 @@
 echo "START COMPONENT"
 
 ## ODTP LOGGER in the background
-python3 /odtp/odtp-app/logger.py >> /odtp/odtp-workdir/odtpLoggerDebugging.txt 2>&1 &
+if [ -v MONGODB_CLIENT ]; then
+    python3 /odtp/odtp-app/logger.py >> /odtp/odtp-workdir/odtpLoggerDebugging.txt 2>&1 &
+else
+    echo "MONGODB_CLIENT does not exist"
+fi
 
 # Actions
 # A1 - Clone github
@@ -31,11 +35,17 @@ zip -r output.zip /odtp/odtp-workdir/output
 cp output.zip /odtp/odtp-volume/output.zip
 cp workdir.zip /odtp/odtp-volume/workdir.zip
 
-## Copying logs
-cp /odtp/odtp-workdir/log.txt /odtp/odtp-volume/log.txt
-cp /odtp/odtp-workdir/odtpLoggerDebugging.txt
-cp /odtp/odtp-workdir/odtpS3UploadedDebugging.txt
-
 ## Save Snapshot in s3
 mv output.zip /odtp/odtp-output/output.zip
 mv workdir.zip /odtp/odtp-output/workdir.zip
+
+if [[ -v S3_SERVER && -v MONGODB_CLIENT ]]; then
+    python3 /odtp/odtp-app/s3uploader.py >> /odtp/odtp-workdir/odtpS3UploadedDebugging.txt 2>&1 &
+else
+    echo "S3_SERVER does not exist"
+fi
+
+## Copying logs
+cp /odtp/odtp-workdir/log.txt /odtp/odtp-volume/log.txt
+cp /odtp/odtp-workdir/odtpLoggerDebugging.txt /odtp/odtp-volume/odtpLoggerDebugging.txt
+cp /odtp/odtp-workdir/odtpS3UploadedDebugging.txt /odtp/odtp-volume/odtpS3UploadedDebugging.txt

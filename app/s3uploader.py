@@ -81,14 +81,14 @@ if __name__ == "__main__":
     uploader = MinioS3Uploader(S3_SERVER, ACCESS_KEY, SECRET_KEY, BUCKET_NAME)
 
     ## Upload compressed output
-    uploader.upload_zip('/odtp/odtp-volume/output.zip', 'odtp/odtp-snapshots/output.zip')
+    uploader.upload_zip('/odtp/odtp-output/output.zip', 'odtp/odtp-snapshots/output.zip')
 
     document = {
         "type": "output",
         "data":[{
         "timestamp": datetime.utcnow(),
         "author": "Author Test",
-        "message": f"{S3_SERVER}/odtp/odtp-snapshots/output.zip"
+        "message": f"{S3_SERVER}/{BUCKET_NAME}/odtp/odtp-snapshots/output.zip"
         }]
     }
 
@@ -97,14 +97,14 @@ if __name__ == "__main__":
     # TODO: Upload individual files to S3 (Experimental)
 
     ## Upload snapshot workdir
-    uploader.upload_zip('/odtp/odtp-volume/snapshot.zip', 'odtp/odtp-snapshots/snapshot.zip')
+    uploader.upload_zip('/odtp/odtp-output/snapshot.zip', 'odtp/odtp-snapshots/snapshot.zip')
 
     document = {
         "type": "snapshot",
         "data":[{
         "timestamp": datetime.utcnow(),
         "author": "Author Test",
-        "message": f"{S3_SERVER}/odtp/odtp-snapshots/snapshot.zip"
+        "message": f"{S3_SERVER}/{BUCKET_NAME}/odtp/odtp-snapshots/snapshot.zip"
         }]
     }
 
