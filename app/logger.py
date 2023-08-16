@@ -1,6 +1,6 @@
 from pymongo import MongoClient, errors
 from bson import ObjectId
-import datetime
+from datetime import datetime
 import os
 import time
 
