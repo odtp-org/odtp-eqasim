@@ -21,14 +21,21 @@ python3 -m synpp
 ## Matsim
 #java -Xmx20G -cp ile_de_france_run.jar org.eqasim.ile_de_france.RunSimulation --config-path ile_de_france_config.xml
 
-# A4 - Take output and export it
+# Take snapshot of workdir
+zip -r workdir.zip /odtp/odtp-workdir
+
+#  Take output and export it
 zip -r output.zip /odtp/odtp-workdir/output
-mv output.zip /odtp/odtp-volume/output.zip
+
+## Placing output i back in volume just for debugging
+cp output.zip /odtp/odtp-volume/output.zip
+cp workdir.zip /odtp/odtp-volume/workdir.zip
+
+## Copying logs
 cp /odtp/odtp-workdir/log.txt /odtp/odtp-volume/log.txt
+cp /odtp/odtp-workdir/odtpLoggerDebugging.txt
+cp /odtp/odtp-workdir/odtpS3UploadedDebugging.txt
 
-## O1 - Save Snapshot in s3
-
-## 02 - Upload log in MongoDB
-
-# A5 - Kill Container
-## Automatically done
+## Save Snapshot in s3
+mv output.zip /odtp/odtp-output/output.zip
+mv workdir.zip /odtp/odtp-output/workdir.zip

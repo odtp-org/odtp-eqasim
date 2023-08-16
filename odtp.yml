@@ -24,6 +24,7 @@
 - outputSchema: ...
 - env:
   - MONGODB_CLIENT
-  - S3URL
-  - S3TOKEN
-  - S3SECRET
+  - S3_SERVER
+  - S3_ACCESS_KEY
+  - S3_SECRET_KEY
+  - S3_BUCKET_NAME

@@ -4,7 +4,6 @@ from datetime import datetime
 import os
 import time
 
-
 def connectClient():
     client = MongoClient(os.environ["MONGODB_CLIENT"])
     db=client.odtp
