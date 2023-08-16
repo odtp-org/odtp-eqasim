@@ -7,7 +7,7 @@ import time
 
 def connectClient():
     client = MongoClient(os.environ["MONGODB_CLIENT"])
-    db=client.defaultdb
+    db=client.odtp
     return client, db
 
 def createComponentEntry(db, collectionTag=None): 
