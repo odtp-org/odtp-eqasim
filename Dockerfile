@@ -1,15 +1,7 @@
-ARG VERSION_BUILD
+FROM ubuntu:latest
 
-#FROM --platform=linux/amd64 ubuntu:latest
-FROM ubuntu
-ENV PYTHONUNBUFFERED=true
-WORKDIR /app
-
-
-#LABEL org.opencontainers.image.source=https://github.com/caviri/ILF_docker
-LABEL org.opencontainers.image.description="ILF pipeline"
-LABEL org.opencontainers.image.licenses=Apache-2.0
-LABEL org.opencontainers.image.version ${VERSION_BUILD}
+RUN apt update
+RUN apt install python3 python3-pip -y
 
 ##################################################
 # Ubuntu setup
@@ -27,35 +19,16 @@ RUN apt-get update && apt-get -y upgrade \
     g++ \
     gcc \
     htop \
+    zip \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-
 ##################################################
-# Conda setup
+# ODTP setup
 ##################################################
 
-ENV PATH="/root/miniconda3/bin:${PATH}"
-ARG PATH="/root/miniconda3/bin:${PATH}"
-
-RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-    && mkdir /root/.conda \
-    && bash Miniconda3-latest-Linux-x86_64.sh -b \
-    && rm -f Miniconda3-latest-Linux-x86_64.sh \
-    && echo "Running $(conda --version)" && \
-    conda init bash && \
-    . /root/.bashrc && \
-    conda update conda && \
-    conda create -n python-app && \
-    conda activate python-app && \
-    conda install python=3.7 pip 
-    
-
-RUN git clone https://github.com/eqasim-org/ile-de-france.git
-COPY ./config/environment.yml /app/ile-de-france/
-RUN conda config --set always_yes yes --set changeps1 no
-RUN conda update -q conda
-RUN conda env create -f ile-de-france/environment.yml
+COPY odtp.requirements.txt /tmp/odtp.requirements.txt
+RUN pip install -r /tmp/odtp.requirements.txt
 
 ##################################################
 # Java setup
@@ -70,24 +43,51 @@ RUN apt-get update && \
 # Maven setup
 ##################################################
 
-RUN wget http://mirror.easyname.ch/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz -O maven.tar.gz
-RUN tar xf maven.tar.gz
-RUN export PATH=$HOME/apache-maven-3.6.3/bin:$PATH
+RUN mkdir /tmp/maven
+RUN wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.6.3/apache-maven-3.6.3-bin.tar.gz -O /tmp/maven.tar.gz
+RUN tar xf /tmp/maven.tar.gz -C /tmp/maven 
+RUN export PATH=/tmp/apache-maven-3.6.3/bin:$PATH
 
 ##################################################
-# Maven setup
+# Osmosis setup
 ##################################################
 
-RUN wget https://github.com/openstreetmap/osmosis/releases/download/0.48.3/osmosis-0.48.3.tgz -O osmosis.tgz
-RUN mkdir /app/osmosis
-RUN tar xf /app/osmosis.tgz -C /app/osmosis
+RUN mkdir /tmp/osmosis
+RUN wget https://github.com/openstreetmap/osmosis/releases/download/0.48.3/osmosis-0.48.3.tgz -O /tmp/osmosis.tgz
+RUN tar xf /tmp/osmosis.tgz -C /tmp/osmosis
+
+##################################################
+# GDAL Setup
+##################################################
+
+RUN apt-get update && \
+    apt-get install -y libgdal-dev && \
+    apt-get clean;
 
 ##################################################
 # Eqasim setup
 ##################################################
 
-RUN mkdir /app/data
-## Generate folder with data and output
-RUN mkdir /app/output
-RUN mkdir /app/cache
-COPY ./config/config.yml /app/ile-de-france/
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
+
+##################################################
+# ODTP Preparation
+##################################################
+
+
+# I'm not fully convinced of this folder organization. 
+# Workdir folders should be defined in the startup bash
+
+RUN mkdir /odtp \
+    /odtp/odtp-app \
+    /odtp/odtp-volume \
+    /odtp/odtp-workdir \
+    /odtp/odtp-workdir/cache \
+    /odtp/odtp-workdir/output \
+    /odtp/odtp-output
+
+COPY ./app /odtp/odtp-app
+WORKDIR /odtp
+## How to share the config file as user? Maybe placing in volume? 
+ENTRYPOINT ["bash", "/odtp/odtp-app/startup.sh"]
