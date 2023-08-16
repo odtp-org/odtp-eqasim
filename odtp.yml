@@ -2,7 +2,7 @@
 
 - name: eqasim
 - repo: https://github.com/SDSC-ORD/odtp-eqasim 
-- author: Author_Test
+- author: "Author Test"
 - description: Synthetic population for Matsim
 - arguments:
   - hts: [entd, egt]
@@ -20,5 +20,10 @@
   - logger: 7101
 - devices:
   - gpus: False
-- inputSchema: inputSchema.ttl
-- outputSchema: outputSchema.ttl
+- inputSchema: ...
+- outputSchema: ...
+- env:
+  - MONGODB_CLIENT
+  - S3URL
+  - S3TOKEN
+  - S3SECRET

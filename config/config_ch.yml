@@ -16,7 +16,7 @@ config:
   random_seed: 0
   hot_deck_matching_runners: 2
   disable_progress_bar: false
-  java_memory: 10G
+  java_memory: 100G
   input_downsampling: 0.01
   enable_scaling: true
   scaling_year: 2020

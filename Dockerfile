@@ -24,6 +24,13 @@ RUN apt-get update && apt-get -y upgrade \
     && rm -rf /var/lib/apt/lists/*
 
 ##################################################
+# ODTP setup
+##################################################
+
+COPY odtp.requirements.txt /tmp/odtp.requirements.txt
+RUN pip install -r /tmp/odtp.requirements.txt
+
+##################################################
 # Java setup
 ##################################################
 

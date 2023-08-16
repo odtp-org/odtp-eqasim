@@ -1,6 +1,21 @@
 # ODTP Eqasim Component
 ODTP component for running Eqasim. 
 
+## How to run this docker. 
+
+1. Prepare manually a folder called volume containing the following files of our selected scenario:
+
+- data
+- config.yml 
+
+2. Run the following command.Select the correct volume folder, the `SCENARIO` you want to simulate (`"IDF"` or `"CH"`) and the MONGODB_CLIENT URL. 
+
+```
+docker run -it --rm -v /volume:/odtp/odtp-volume -e SCENARIO=IDF -e MONGODB_CLIENT="mongodb://USER:PASS@10.95.48.38:27017/" caviri/odtp-eqasim:latest
+```
+
+# Deprecated documentation
+
 This component contains: 
 1. Data loaders
 2. Eqasim synthetic population generation
@@ -9,9 +24,9 @@ This component contains:
 Development phases: 
 
 1. [x] Basic docker container that allows to run IDF scenario
-2. [ ] Docker container compatible with more than one scenarios
-3. [ ] ODTP single-component prototype
-4. [ ] Eqasim division in 3 components:
+2. [x] Docker container compatible with more than one scenarios
+3. [x] ODTP single-component prototype
+4. [x] Eqasim division in 3 components:
     - Data loaders
     - Eqasim
     - Matsim
