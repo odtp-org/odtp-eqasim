@@ -1,4 +1,8 @@
 #!/bin/bash
+echo "START COMPONENT"
+
+## ODTP LOGGER in the background
+python /odtp/odtp-app/logger.py >> loggerDebugging.txt 2>&1 &
 
 # Actions
 # A1 - Clone github
