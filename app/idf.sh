@@ -8,7 +8,7 @@ python /odtp/odtp-app/logger.py >> loggerDebugging.txt 2>&1 &
 # A1 - Clone github
 git clone https://github.com/eqasim-org/ile-de-france.git /odtp/odtp-workdir/scenario
 cd /odtp/odtp-workdir/scenario
-git checkout b8968c1 #18aa1d4
+git checkout b8968c1
 
 # A2 - Process configuration
 cp /odtp/odtp-volume/config.yml /odtp/odtp-workdir/scenario/config.yml
