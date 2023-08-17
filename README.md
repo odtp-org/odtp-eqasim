@@ -8,77 +8,46 @@ ODTP component for running Eqasim.
 - data
 - config.yml 
 
-2. Run the following command.Select the correct volume folder, the `SCENARIO` you want to simulate (`"IDF"` or `"CH"`) and the MONGODB_CLIENT URL. 
+2. Create your .env file with this structure. **If you do not have MONGODB and/or S3 activated omit this step, and just provide the scenario as environmental variable.**
 
 ```
-docker run -it --rm -v /volume:/odtp/odtp-volume -e SCENARIO=IDF -e MONGODB_CLIENT="mongodb://USER:PASS@10.95.48.38:27017/" caviri/odtp-eqasim:latest
+SCENARIO=IDF
+MONGODB_CLIENT=mongodb://.....
+S3_SERVER=https://....
+S3_ACCESS_KEY=Q0ISQ....
+S3_SECRET_KEY=OoPthI....
+S3_BUCKET_NAME=13301....
 ```
 
-# Deprecated documentation
-
-This component contains: 
-1. Data loaders
-2. Eqasim synthetic population generation
-3. Matsim testing
-
-Development phases: 
-
-1. [x] Basic docker container that allows to run IDF scenario
-2. [x] Docker container compatible with more than one scenarios
-3. [x] ODTP single-component prototype
-4. [x] Eqasim division in 3 components:
-    - Data loaders
-    - Eqasim
-    - Matsim
-
-
-## First docker
-
-Based in the pipeline for IDF a docker version able to run the synthetic dataset has been created. In order to build that docker you need to select 
-one of the two compatible architecture `arm64` (Apple Silicon) or `amd64`. 
-
-In order to access to the data, please run:
+3. Build the dockerfile 
 
 ```
-wget "https://drive.switch.ch/index.php/s/Q32FYIHoQeV6pXL/download" -O data.zip
-
-wget "https://drive.switch.ch/index.php/s/nubhDEgA90g5c81/download" -O data.zip
-unzip data.zip
-rm data.zip
+docker build odtp-eqasim .
 ```
 
-### Build docker 
-
-TODO: Deprecated, this is gonna be abandon. Actually 
-
-For amd64 architecture:
-```
-docker build -t sdsc-ord/eqasim:latest -f .docker/amd64/Dockerfile .       
-```
-
-For arm64 architecture:
-```
-docker build -t sdsc-ord/eqasim:latest -f .docker/arm64/Dockerfile .       
-```
-
-### How run docker interactively.
+4. Run the following command. Select the correct volume folder, the `SCENARIO` you want to simulate (`"IDF"` or `"CH"`) and the MONGODB_CLIENT URL. 
 
 ```
-docker run -v {ABSOLUTE_PATH_TO_DATA_FOLDER}:/app/data -it sdsc-ord/eqasim:latest 
+docker run -it --rm -v {PATH_TO_YOUR_VOLUME}:/odtp/odtp-volume --env-file .env odtp-eqasim
 ```
 
-### How to run the synthetic population generation inside docker. 
+## Description of files
 
-```
-cd ile-de-france
-conda activate ile-de-france
-python3 -m synpp
-```
+- app/startup.ch
+    - This file is the entrypoint. Check the scenario and keep log of all stout. 
+- app/idf.ch
+    - Pull IDF repo. Launch the pipeline. Activate logger and s3 uploaders. Compress output and workdir. 
+- app/ch.ch
+    - Pull CH repo. Launch the pipeline. Activate logger and s3 uploaders. Compress output and workdir. 
 
-#### How to run the simulation: 
+- logger.py
+    - Check log.txt and uploads stout to MongoDB
+- s3uploader.py
+    - Upload output.zip & workdir.zip to S3. Create a mongodb entry. 
 
-```
-cd ../output
-java -Xmx20G -cp ile_de_france_run.jar org.eqasim.ile_de_france.RunSimulation --config-path ile_de_france_config.xml
-```
+## Development. 
+
+Developed by SDSC/CSFM.
+
+
 
