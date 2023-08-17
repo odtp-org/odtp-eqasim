@@ -82,13 +82,15 @@ if __name__ == "__main__":
 
     ## Upload compressed output
     uploader.upload_zip('/odtp/odtp-output/output.zip', 'odtp/odtp-snapshots/output.zip')
+    file_size_bytes = os.path.getsize('/odtp/odtp-output/output.zip')
 
     document = {
         "type": "output",
         "data":[{
         "timestamp": datetime.utcnow(),
         "author": "Author Test",
-        "message": f"{S3_SERVER}/{BUCKET_NAME}/odtp/odtp-snapshots/output.zip"
+        "message": f"{S3_SERVER}/{BUCKET_NAME}/odtp/odtp-snapshots/output.zip",
+        "size": file_size_bytes
         }]
     }
 
@@ -97,14 +99,16 @@ if __name__ == "__main__":
     # TODO: Upload individual files to S3 (Experimental)
 
     ## Upload snapshot workdir
-    uploader.upload_zip('/odtp/odtp-output/snapshot.zip', 'odtp/odtp-snapshots/snapshot.zip')
+    uploader.upload_zip('/odtp/odtp-output/workdir.zip', 'odtp/odtp-snapshots/workdir.zip')
+    file_size_bytes = os.path.getsize('/odtp/odtp-output/workdir.zip')
 
     document = {
         "type": "snapshot",
         "data":[{
         "timestamp": datetime.utcnow(),
         "author": "Author Test",
-        "message": f"{S3_SERVER}/{BUCKET_NAME}/odtp/odtp-snapshots/snapshot.zip"
+        "message": f"{S3_SERVER}/{BUCKET_NAME}/odtp/odtp-snapshots/workdir.zip",
+        "size": file_size_bytes
         }]
     }
 
