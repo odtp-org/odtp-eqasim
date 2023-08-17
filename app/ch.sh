@@ -63,3 +63,4 @@ if [[ -v S3_SERVER && -v MONGODB_CLIENT ]]; then
     cp /odtp/odtp-workdir/odtpS3UploadedDebugging.txt /odtp/odtp-volume/odtpS3UploadedDebugging.txt
 else
     echo "S3_SERVER doesn't exist. Not copying log files."
+fi
