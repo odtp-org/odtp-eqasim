@@ -48,5 +48,15 @@ fi
 
 ## Copying logs
 cp /odtp/odtp-workdir/log.txt /odtp/odtp-volume/log.txt
-cp /odtp/odtp-workdir/odtpLoggerDebugging.txt /odtp/odtp-volume/odtpLoggerDebugging.txt
-cp /odtp/odtp-workdir/odtpS3UploadedDebugging.txt /odtp/odtp-volume/odtpS3UploadedDebugging.txt
+
+
+if [ -v MONGODB_CLIENT ]; then
+    cp /odtp/odtp-workdir/odtpLoggerDebugging.txt /odtp/odtp-volume/odtpLoggerDebugging.txt
+else
+    echo "MONGODB_CLIENT doesn't exist. Not copying log files."
+fi
+
+if [[ -v S3_SERVER && -v MONGODB_CLIENT ]]; then
+    cp /odtp/odtp-workdir/odtpS3UploadedDebugging.txt /odtp/odtp-volume/odtpS3UploadedDebugging.txt
+else
+    echo "S3_SERVER doesn't exist. Not copying log files."
