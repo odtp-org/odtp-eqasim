@@ -42,7 +42,8 @@ mv output.zip /odtp/odtp-output/output.zip
 mv workdir.zip /odtp/odtp-output/workdir.zip
 
 if [ -v S3_SERVER ]; then
-    python3 /odtp/odtp-app/s3uploader.py >> /odtp/odtp-workdir/odtpS3UploadedDebugging.txt 2>&1 &
+    echo "Uploading to S3_SERVER"
+    python3 /odtp/odtp-app/s3uploader.py 2>&1 | tee /odtp/odtp-workdir/odtpS3UploadedDebugging.txt 
 else
     echo "S3_SERVER does not exist"
 fi
