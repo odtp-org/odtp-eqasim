@@ -8,7 +8,7 @@ ODTP component for running Eqasim.
     - Download the switchdrive file provided in slack. 
 
 2. CH
-    - Download the data provided by Milos. Copy and paste all folders located in `hafas/2018` in `hafas`. 
+    - Download the data provided by Milos. Copy and paste all folders located in `` in ``. 
 
 ## How to run this component in docker. 
 

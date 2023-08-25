@@ -10,7 +10,7 @@ fi
 
 # Actions
 # A1 - Clone github
-git clone https://github.com/eqasim-org/ile-de-france.git /odtp/odtp-workdir/scenario
+git clone git@github.com:eqasim-org/sao_paulo.git /odtp/odtp-workdir/scenario
 cd /odtp/odtp-workdir/scenario
 git checkout b8968c1
 
