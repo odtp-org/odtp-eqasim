@@ -40,6 +40,23 @@ docker build -t odtp-eqasim .
 docker run -it --rm -v {PATH_TO_YOUR_VOLUME}:/odtp/odtp-volume --env-file .env odtp-eqasim
 ```
 
+## Example of tmux session
+
+In this example you will run the isolated container with the CH scenario.
+
+```
+tmux new -s odtp-test
+docker run -it --rm -v /home/vivar/odtp-tutorial/volume-ch:/odtp/odtp-volume -e SCENARIO=CH --name odtp-test odtp-eqasim
+```
+
+Now you can push Control + B, and then D to dettach from the tmux session. In order to come back to the session you can do: 
+
+```
+tmux attach-session -t odtp-test
+```
+If you want to kill the session just write `exit`. Also use `tmux ls` to list all available tmux sessions.
+
+
 ## Description of files
 
 - app/startup.ch
