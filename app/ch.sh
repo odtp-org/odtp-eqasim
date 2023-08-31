@@ -13,7 +13,7 @@ fi
 git clone https://gitlab.ethz.ch/ivt-vpl/populations/ch-zh-synpop /odtp/odtp-workdir/scenario
 cd /odtp/odtp-workdir/scenario
 git switch develop
-git checkout b52736b70a5619bf5e01dabf9ead6994da9898b5
+git checkout 4658daa2e441dcda132622e7fcb47da1df8c47d6
 
 
 # A2 - Process configuration
