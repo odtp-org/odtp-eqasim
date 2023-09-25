@@ -1,10 +1,11 @@
 # This file should contain basic component information such as 
 
 - name: eqasim
-- repo: https://github.com/SDSC-ORD/odtp-eqasim 
+- repo: https://github.com/odtp-org/odtp-eqasim 
 - author: "Author Test"
 - description: Synthetic population for Matsim
 - arguments:
+  - scenario: [idf, ch]
   - hts: [entd, egt]
   - sampling_rate: 0.001
   - random_seed: 1234

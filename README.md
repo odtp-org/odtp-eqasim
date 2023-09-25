@@ -1,7 +1,6 @@
 # ODTP Eqasim Component
 ODTP component for running Eqasim. 
 
-
 ## Prepare dataset
 
 1. IDF
@@ -12,10 +11,9 @@ ODTP component for running Eqasim.
 
 ## How to run this component in docker. 
 
-1. Prepare manually a folder called volume containing the following files of our selected scenario:
+1. Prepare manually a folder called volume containing the following datafolder of our selected scenario:
 
 - data
-- config.yml 
 
 2. Create your `.env` file with this structure. **If you do not have MONGODB and/or S3 activated omit this step, and just provide the scenario as environmental variable.**
 
@@ -32,6 +30,31 @@ S3_BUCKET_NAME=13301....
 
 ```
 docker build -t odtp-eqasim .
+```
+
+3. Depending on your scenario add the parameters requested:
+
+For IDF
+```
+processes=8
+sampling_rate=0.001
+random_seed=1234
+java_memory=24G
+hts=entd
+```
+
+For CH
+```
+threads=4
+random_seed=0
+hot_deck_matching_runnners=2
+java_memory=100G
+input_downsampling=0.01
+enable_scaling=true
+scaling_year=2020
+use_freight=true
+hafas_date=01.10.2018
+output_id=test
 ```
 
 4. Run the following command. Select the correct volume folder, the `SCENARIO` you want to simulate (`"IDF"` or `"CH"`) and the MONGODB_CLIENT URL. 
@@ -65,7 +88,6 @@ If you want to kill the session just write `exit`. Also use `tmux ls` to list al
     - Pull IDF repo. Launch the pipeline. Activate logger and s3 uploaders. Compress output and workdir. 
 - app/ch.ch
     - Pull CH repo. Launch the pipeline. Activate logger and s3 uploaders. Compress output and workdir. 
-
 - logger.py
     - Check log.txt and uploads stout to MongoDB
 - s3uploader.py
@@ -74,6 +96,3 @@ If you want to kill the session just write `exit`. Also use `tmux ls` to list al
 ## Development. 
 
 Developed by SDSC/CSFM.
-
-
-

@@ -16,8 +16,12 @@ git switch develop
 git checkout 4658daa2e441dcda132622e7fcb47da1df8c47d6
 
 
-# A2 - Process configuration
-cp /odtp/odtp-volume/config.yml /odtp/odtp-workdir/scenario/config.yml
+# A2A - Prepare parameters & Config File
+# Read placeholders and create config file from Environment  
+python3 /odtp/odtp-app/parameters.py /odtp/odtp-app/config_templates/config_ch.yml /odtp/odtp-workdir/scenario/config.yml
+#cp /odtp/odtp-volume/config.yml /odtp/odtp-workdir/scenario/config.yml
+
+# A2B - Prepare datafolder
 ln -s /odtp/odtp-volume/data /odtp/odtp-workdir/data
 
 # A3 - Run the tool
