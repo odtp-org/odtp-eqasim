@@ -5,7 +5,7 @@ dryrun: false
 
 # Requested stages
 run:
-  - synthesis.population.enriched
+  - synthesis.output
   - matsim.output
 
 # These are configuration options that we use in the pipeline
