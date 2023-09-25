@@ -17,8 +17,11 @@ ODTP component for running Eqasim.
 
 2. Create your `.env` file with this structure. **If you do not have MONGODB and/or S3 activated omit this step, and just provide the scenario as environmental variable.**
 
+Add the selected scenario `IDF`, or `CH`. Also select the eqasim pipeline you want to run `Synthesis`, or `matsim`.
+
 ```
 SCENARIO=IDF
+PIPELINE=Synthesis
 MONGODB_CLIENT=mongodb://.....
 S3_SERVER=https://....
 S3_ACCESS_KEY=Q0ISQ....
@@ -92,6 +95,8 @@ If you want to kill the session just write `exit`. Also use `tmux ls` to list al
     - Check log.txt and uploads stout to MongoDB
 - s3uploader.py
     - Upload output.zip & workdir.zip to S3. Create a mongodb entry. 
+- parameters.py
+    - Takes care of replacing the placeholder on the config templates.
 
 ## Development. 
 
