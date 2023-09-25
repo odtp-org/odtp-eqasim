@@ -11,10 +11,9 @@ ODTP component for running Eqasim.
 
 ## How to run this component in docker. 
 
-1. Prepare manually a folder called volume containing the following files of our selected scenario:
+1. Prepare manually a folder called volume containing the following datafolder of our selected scenario:
 
 - data
-- config.yml 
 
 2. Create your `.env` file with this structure. **If you do not have MONGODB and/or S3 activated omit this step, and just provide the scenario as environmental variable.**
 
@@ -97,6 +96,3 @@ If you want to kill the session just write `exit`. Also use `tmux ls` to list al
 ## Development. 
 
 Developed by SDSC/CSFM.
-
-
-
