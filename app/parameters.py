@@ -54,7 +54,8 @@ if __name__ == "__main__":
     outputfilepath = sys.argv[2]
 
     odtpConfig = readODTPConfigYAML("/odtp/odtp-config/odtp.yml")
-    #arguments = odtpConfig["arguments"]
+    argumentsdefault = odtpConfig["arguments"]
+    #Take the default from here
 
     # Implementing simple load of parameters by now. Not based in the odtp config file, as both pipelines contains different arguments name. 
     placeholders = obtainAllPlaceholders(filepath)

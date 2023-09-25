@@ -33,6 +33,31 @@ S3_BUCKET_NAME=13301....
 docker build -t odtp-eqasim .
 ```
 
+3. Depending on your scenario add the parameters requested:
+
+For IDF
+```
+processes=8
+sampling_rate=0.001
+random_seed=1234
+java_memory=24G
+hts=entd
+```
+
+For CH
+```
+threads=4
+random_seed=0
+hot_deck_matching_runnners=2
+java_memory=100G
+input_downsampling=0.01
+enable_scaling=true
+scaling_year=2020
+use_freight=true
+hafas_date=01.10.2018
+output_id=test
+```
+
 4. Run the following command. Select the correct volume folder, the `SCENARIO` you want to simulate (`"IDF"` or `"CH"`) and the MONGODB_CLIENT URL. 
 
 ```
