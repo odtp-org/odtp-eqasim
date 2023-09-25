@@ -80,12 +80,18 @@ RUN pip install -r /tmp/requirements.txt
 # Workdir folders should be defined in the startup bash
 
 RUN mkdir /odtp \
+    /odtp/odtp-config \
     /odtp/odtp-app \
     /odtp/odtp-volume \
     /odtp/odtp-workdir \
-    /odtp/odtp-workdir/cache \
-    /odtp/odtp-workdir/output \
-    /odtp/odtp-output
+    /odtp/odtp-output 
+
+# This last 2 folders are specific from odtp-eqasim
+RUN mkdir /odtp/odtp-workdir/cache \
+    /odtp/odtp-workdir/output 
+
+# This copy all the information for running the ODTP component
+COPY odtp.yml /odtp/odtp-config/odtp.yml
 
 COPY ./app /odtp/odtp-app
 WORKDIR /odtp

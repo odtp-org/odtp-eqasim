@@ -1,7 +1,6 @@
 # ODTP Eqasim Component
 ODTP component for running Eqasim. 
 
-
 ## Prepare dataset
 
 1. IDF
@@ -65,7 +64,6 @@ If you want to kill the session just write `exit`. Also use `tmux ls` to list al
     - Pull IDF repo. Launch the pipeline. Activate logger and s3 uploaders. Compress output and workdir. 
 - app/ch.ch
     - Pull CH repo. Launch the pipeline. Activate logger and s3 uploaders. Compress output and workdir. 
-
 - logger.py
     - Check log.txt and uploads stout to MongoDB
 - s3uploader.py

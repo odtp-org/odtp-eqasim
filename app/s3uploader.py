@@ -60,7 +60,6 @@ def createSnapshotEntry(db, document, collectionTag=None):
     return result.inserted_id
 
 
-
 def mongoDBLog(document):
     ### Create Entry
     client, db =  connectClient()

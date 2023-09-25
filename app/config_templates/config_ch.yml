@@ -1,0 +1,27 @@
+# General pipeline settings
+working_directory: /odtp/odtp-workdir/cache
+flowchart_path: /odtp/odtp-workdir/output/flowchart.json
+dryrun: false
+
+# Requested stages
+run:
+  - synthesis.output
+  #- matsim.output
+
+# These are configuration options that we use in the pipeline
+config:
+  threads: [threads]
+  osmosis_binary: /tmp/osmosis/bin/osmosis
+  maven_binary: /tmp/maven/apache-maven-3.6.3/bin/mvn
+  random_seed: [random_seed]
+  hot_deck_matching_runners: [hot_deck_matching_runners]
+  disable_progress_bar: false
+  java_memory: [java_memory]
+  input_downsampling: [input_downsampling]
+  enable_scaling: [enable_scaling]
+  scaling_year: [scaling_year]
+  use_freight: [use_freight]
+  hafas_date: [hafas_date]
+  data_path: /odtp/odtp-workdir/data
+  output_path: /odtp/odtp-workdir/output
+  output_id: [output_id]

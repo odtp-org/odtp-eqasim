@@ -14,8 +14,12 @@ git clone https://github.com/eqasim-org/ile-de-france.git /odtp/odtp-workdir/sce
 cd /odtp/odtp-workdir/scenario
 git checkout b8968c1
 
-# A2 - Process configuration
-cp /odtp/odtp-volume/config.yml /odtp/odtp-workdir/scenario/config.yml
+# A2A - Prepare parameters & Config File
+# Read placeholders and create config file from Environment  
+python3 -m /odtp/odtp-app/parameters.py /odtp/odtp-app/config_templates/config_idf.yml /odtp/odtp-workdir/scenario/config.yml
+#cp /odtp/odtp-volume/config.yml /odtp/odtp-workdir/scenario/config.yml
+
+# A2B - Prepare datafolder
 ln -s /odtp/odtp-volume/data /odtp/odtp-workdir/data
 
 # A3 - Run the tool
