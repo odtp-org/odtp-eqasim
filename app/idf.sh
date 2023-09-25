@@ -16,7 +16,7 @@ git checkout b8968c1
 
 # A2A - Prepare parameters & Config File
 # Read placeholders and create config file from Environment  
-python3 -m /odtp/odtp-app/parameters.py /odtp/odtp-app/config_templates/config_idf.yml /odtp/odtp-workdir/scenario/config.yml
+python3 /odtp/odtp-app/parameters.py /odtp/odtp-app/config_templates/config_idf.yml /odtp/odtp-workdir/scenario/config.yml
 #cp /odtp/odtp-volume/config.yml /odtp/odtp-workdir/scenario/config.yml
 
 # A2B - Prepare datafolder
