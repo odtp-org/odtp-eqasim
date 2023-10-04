@@ -16,8 +16,13 @@ git checkout b8968c1
 
 # A2A - Prepare parameters & Config File
 # Read placeholders and create config file from Environment  
-python3 /odtp/odtp-app/parameters.py /odtp/odtp-app/config_templates/config_idf.yml /odtp/odtp-workdir/scenario/config.yml
-#cp /odtp/odtp-volume/config.yml /odtp/odtp-workdir/scenario/config.yml
+if [ "$PIPELINE" == "Synthesis" ]; then
+    echo "Running Synthesis PIPELINE"
+    python3 /odtp/odtp-app/parameters.py /odtp/odtp-app/config_templates/config_synthesis_idf.yml /odtp/odtp-workdir/scenario/config.yml
+else
+    echo "Running Matsim PIPELINE"
+    python3 /odtp/odtp-app/parameters.py /odtp/odtp-app/config_templates/config_matsim_idf.yml /odtp/odtp-workdir/scenario/config.yml
+fi
 
 # A2B - Prepare datafolder
 ln -s /odtp/odtp-volume/data /odtp/odtp-workdir/data
