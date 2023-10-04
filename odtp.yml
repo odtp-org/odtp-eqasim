@@ -3,6 +3,7 @@
 - name: eqasim
 - repo: https://github.com/odtp-org/odtp-eqasim 
 - author: "Author Test"
+- original_author: Author of the tool
 - description: Synthetic population for Matsim
 - arguments:
   - scenario: [idf, ch]
@@ -14,7 +15,6 @@
   - generted_vehicels_method: fleet_sample
   - vehicles_data_year: 2015
 - volume:
-  - config.yml: /odtp/odtp-volume/config.yml
   - data: /odtp/odtp-volume/data
 - ports:
   - api: 7100

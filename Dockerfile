@@ -75,7 +75,6 @@ RUN pip install -r /tmp/requirements.txt
 # ODTP Preparation
 ##################################################
 
-
 # I'm not fully convinced of this folder organization. 
 # Workdir folders should be defined in the startup bash
 

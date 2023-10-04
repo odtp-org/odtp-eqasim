@@ -98,6 +98,16 @@ If you want to kill the session just write `exit`. Also use `tmux ls` to list al
 - parameters.py
     - Takes care of replacing the placeholder on the config templates.
 
+## Changelog
+
+- v.0.1.0: Version compatible with IDF & CH
+    - Parameters. Now the parameters are taken from the enviroment variables. 
+    - Configuration templates. No needs of copying config.yml file anymore. The file will be built based on the parameters.
+    - Logger: If MongoDB arg. provided the container will log its activity in the db. 
+    - S3 Compatibility: Output content, and snapshots can be uploaded to the S3 server.
+
+- v.0.0.1: Version compatible with IDF
+
 ## Development. 
 
 Developed by SDSC/CSFM.
