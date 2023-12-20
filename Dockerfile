@@ -71,17 +71,17 @@ RUN apt-get update && \
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt
 
+
 ##################################################
 # ODTP Preparation
 ##################################################
 
-# I'm not fully convinced of this folder organization. 
-# Workdir folders should be defined in the startup bash
-
 RUN mkdir /odtp \
     /odtp/odtp-config \
     /odtp/odtp-app \
-    /odtp/odtp-volume \
+    /odtp/odtp-client \
+    /odtp/odtp-logs \ 
+    /odtp/odtp-input \
     /odtp/odtp-workdir \
     /odtp/odtp-output 
 
@@ -92,7 +92,9 @@ RUN mkdir /odtp/odtp-workdir/cache \
 # This copy all the information for running the ODTP component
 COPY odtp.yml /odtp/odtp-config/odtp.yml
 
+COPY ./odtp-client /odtp/odtp-client
+
 COPY ./app /odtp/odtp-app
 WORKDIR /odtp
-## How to share the config file as user? Maybe placing in volume? 
-ENTRYPOINT ["bash", "/odtp/odtp-app/startup.sh"]
+
+ENTRYPOINT ["bash", "/odtp/odtp-client/startup.sh"]
