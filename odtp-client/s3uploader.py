@@ -145,18 +145,18 @@ def main():
     print("S3 UPLOADER ACTIVATED")
     print("###########################")
 
-    S3_SERVER = os.getenv("ODTP_S3_SERVER")
-    BUCKET_NAME = os.getenv("ODTP_BUCKET_NAME")
-    ACCESS_KEY = os.getenv("ODTP_ACCESS_KEY")
-    SECRET_KEY = os.getenv("ODTP_SECRET_KEY")
-    STEP_ID = os.getenv("ODTP_STEP_ID")
+    S3_SERVER = os.getenv("ODTP-S3-SERVER")
+    BUCKET_NAME = os.getenv("ODTP-BUCKET-NAME")
+    ACCESS_KEY = os.getenv("ODTP-ACCESS-KEY")
+    SECRET_KEY = os.getenv("ODTP-SECRET-KEY")
+    STEP_ID = os.getenv("ODTP-STEP-ID")
     odtpS3 = s3Manager(S3_SERVER, BUCKET_NAME, ACCESS_KEY, SECRET_KEY)
 
-    MONGO_URL = os.getenv("ODTP_MONGO_SERVER")
+    MONGO_URL = os.getenv("ODTP-MONGO-SERVER")
     db_name = "odtp"
     dbManager = MongoManager(MONGO_URL, db_name)
 
-    USER_ID = os.getenv("ODTP_USER_ID")
+    USER_ID = os.getenv("ODTP-USER-ID")
     ODTP_OUTPUT_PATH = f"odtp/{STEP_ID}"
 
     odtpS3.createFolder(ODTP_OUTPUT_PATH)
@@ -191,40 +191,42 @@ def main():
 
     odtp_output_id = dbManager.add_output(STEP_ID, output_data)
     
-    logging.info("ODTP OUTPUT UPLOADED")
+    logging.info("ODTP OUTPUT UPLOADED IN {}".format(odtp_output_id))
 
-    ## Uploading compressed workdir snapshot
-    #########################################################################
+    if os.getenv("ODTP_SAVE_SNAPSHOT") == "TRUE":
 
-    odtpS3.uploadFile('/odtp/odtp-output/odtp-snapshot.zip', ODTP_OUTPUT_PATH + "/odtp-snapshot.zip")
+        ## Uploading compressed workdir snapshot
+        #########################################################################
 
-    file_size_bytes = os.path.getsize('/odtp/odtp-output/odtp-snapshot.zip')
+        odtpS3.uploadFile('/odtp/odtp-output/odtp-snapshot.zip', ODTP_OUTPUT_PATH + "/odtp-snapshot.zip")
 
-    output_data = {
-        "output_type": "snapshot",
-        "s3_bucket": BUCKET_NAME,  # Name of the S3 bucket where the output is stored
-        "s3_key": ODTP_OUTPUT_PATH,  # The key (path) in the S3 bucket to the output
-        "file_name": "odtp-snapshot.zip",  # The name of the file in the output
-        "file_size": file_size_bytes,  # Size of the file in bytes
-        "file_type": "application/zip",  # MIME type or file type
-        "created_at": datetime.utcnow(),  # Timestamp when the output was created
-        "updated_at": datetime.utcnow(),  # Timestamp when the output was last updated
-        "metadata": {  # Additional metadata associated with the output
-            "description": "Description of the snapshot",
-            "tags": ["tag1", "tag2"],
-            "other_info": "Other relevant information"
-        },
-        "access_control": {  # Information about who can access this output
-            "public": False,  # Indicates if the output is public or private
-            "authorized_users": [USER_ID],  # Array of User ObjectIds who have access
+        file_size_bytes = os.path.getsize('/odtp/odtp-output/odtp-snapshot.zip')
+
+        output_data = {
+            "output_type": "snapshot",
+            "s3_bucket": BUCKET_NAME,  # Name of the S3 bucket where the output is stored
+            "s3_key": ODTP_OUTPUT_PATH,  # The key (path) in the S3 bucket to the output
+            "file_name": "odtp-snapshot.zip",  # The name of the file in the output
+            "file_size": file_size_bytes,  # Size of the file in bytes
+            "file_type": "application/zip",  # MIME type or file type
+            "created_at": datetime.utcnow(),  # Timestamp when the output was created
+            "updated_at": datetime.utcnow(),  # Timestamp when the output was last updated
+            "metadata": {  # Additional metadata associated with the output
+                "description": "Description of the snapshot",
+                "tags": ["tag1", "tag2"],
+                "other_info": "Other relevant information"
+            },
+            "access_control": {  # Information about who can access this output
+                "public": False,  # Indicates if the output is public or private
+                "authorized_users": [USER_ID],  # Array of User ObjectIds who have access
+            }
         }
-    }
 
-    odtp_output_snapshot_id = dbManager.add_output(STEP_ID, output_data)
+        odtp_output_snapshot_id = dbManager.add_output(STEP_ID, output_data)
+
+        logging.info("ODTP WORKDIR SNAPSHOT UPLOADED IN {}".format(odtp_output_snapshot_id))
 
     dbManager.close()
-    logging.info("ODTP WORKDIR SNAPSHOT UPLOADED")
-
     # TODO: Upload individual files to S3 (Experimental)
 
 
