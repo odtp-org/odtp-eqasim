@@ -33,6 +33,13 @@ if [ "$SCENARIO" == "IDF" ]; then
 
 else
     echo "CH SCENARIO."
+
+    # Actions
+    # A1 - Clone github
+    git clone https://gitlab.ethz.ch/ivt-vpl/populations/ch-zh-synpop /odtp/odtp-workdir/scenario
+    cd /odtp/odtp-workdir/scenario
+    git switch develop
+    git checkout 4658daa2e441dcda132622e7fcb47da1df8c47d6
     
     # A2A - Prepare parameters & Config File
     # Read placeholders and create config file from Environment  
