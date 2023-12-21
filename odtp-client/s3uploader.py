@@ -193,7 +193,7 @@ def main():
     
     logging.info("ODTP OUTPUT UPLOADED IN {}".format(odtp_output_id))
 
-    if os.getenv("ODTP_SAVE_SNAPSHOT") == "TRUE":
+    if os.getenv("ODTP-SAVE-SNAPSHOT") == "TRUE":
 
         ## Uploading compressed workdir snapshot
         #########################################################################
