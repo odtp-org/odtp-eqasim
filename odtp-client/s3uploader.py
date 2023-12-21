@@ -145,18 +145,18 @@ def main():
     print("S3 UPLOADER ACTIVATED")
     print("###########################")
 
-    S3_SERVER = os.getenv("ODTP-S3-SERVER")
-    BUCKET_NAME = os.getenv("ODTP-BUCKET-NAME")
-    ACCESS_KEY = os.getenv("ODTP-ACCESS-KEY")
-    SECRET_KEY = os.getenv("ODTP-SECRET-KEY")
-    STEP_ID = os.getenv("ODTP-STEP-ID")
+    S3_SERVER = os.getenv("ODTP_S3_SERVER")
+    BUCKET_NAME = os.getenv("ODTP_BUCKET_NAME")
+    ACCESS_KEY = os.getenv("ODTP_ACCESS_KEY")
+    SECRET_KEY = os.getenv("ODTP_SECRET_KEY")
+    STEP_ID = os.getenv("ODTP_STEP_ID")
     odtpS3 = s3Manager(S3_SERVER, BUCKET_NAME, ACCESS_KEY, SECRET_KEY)
 
-    MONGO_URL = os.getenv("ODTP-MONGO-SERVER")
+    MONGO_URL = os.getenv("ODTP_MONGO_SERVER")
     db_name = "odtp"
     dbManager = MongoManager(MONGO_URL, db_name)
 
-    USER_ID = os.getenv("ODTP-USER-ID")
+    USER_ID = os.getenv("ODTP_USER_ID")
     ODTP_OUTPUT_PATH = f"odtp/{STEP_ID}"
 
     odtpS3.createFolder(ODTP_OUTPUT_PATH)
@@ -193,7 +193,7 @@ def main():
     
     logging.info("ODTP OUTPUT UPLOADED IN {}".format(odtp_output_id))
 
-    if os.getenv("ODTP-SAVE-SNAPSHOT") == "TRUE":
+    if os.getenv("ODTP_SAVE_SNAPSHOT") == "TRUE":
 
         ## Uploading compressed workdir snapshot
         #########################################################################

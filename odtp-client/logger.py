@@ -246,8 +246,8 @@ def main(delay=2):
     print("LOGGER ACTIVATED")
     print("##################################")
     ### Create Entry
-    MONGO_URL = os.getenv("ODTP-MONGO-SERVER")
-    step_id = os.getenv("ODTP-STEP-ID")
+    MONGO_URL = os.getenv("ODTP_MONGO_SERVER")
+    step_id = os.getenv("ODTP_STEP_ID")
     db_name = "odtp"
     
     log_reader = LogReader('/odtp/odtp-logs/log.txt')
