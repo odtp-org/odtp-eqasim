@@ -97,4 +97,4 @@ COPY ./odtp-client /odtp/odtp-client
 COPY ./app /odtp/odtp-app
 WORKDIR /odtp
 
-ENTRYPOINT ["bash", "/odtp/odtp-client/startup.sh"]
+#ENTRYPOINT ["bash", "/odtp/odtp-client/startup.sh"]

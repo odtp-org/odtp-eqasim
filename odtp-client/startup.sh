@@ -4,13 +4,15 @@ touch /odtp/odtp-logs/log.txt
 touch /odtp/odtp-logs/odtpLoggerDebugging.txt
 touch /odtp/odtp-logs/odtpS3UploadedDebugging.txt 
 
-if [ "$SCENARIO" == "IDF" ]; then
-    echo "IDF SCENARIO."
-    bash /odtp/odtp-app/idf.sh 2>&1 | tee /odtp/odtp-workdir/log.txt
-else
-    echo "CH SCENARIO."
-    bash /odtp/odtp-app/ch.sh 2>&1 | tee /odtp/odtp-workdir/log.txt
-fi
+# if [ "$SCENARIO" == "IDF" ]; then
+#     echo "IDF SCENARIO."
+#     bash /odtp/odtp-app/app.sh 2>&1 | tee /odtp/odtp-workdir/log.txt
+# else
+#     echo "CH SCENARIO."
+#     bash /odtp/odtp-app/app.sh 2>&1 | tee /odtp/odtp-workdir/log.txt
+# fi
+bash /odtp/odtp-app/app.sh 2>&1 | tee /odtp/odtp-workdir/log.txt
+
 
 echo "--- ODTP COMPONENT ENDING ---" >> /odtp/odtp-workdir/log.txt
 
