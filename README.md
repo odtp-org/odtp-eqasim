@@ -4,10 +4,13 @@ ODTP component for running Eqasim.
 ## Prepare dataset
 
 1. IDF
-    - Download the switchdrive file provided in slack. 
+    - Download the switchdrive zip file provided. 
 
 2. CH
     - Download the data provided by Milos. Copy and paste all folders located in `hafas/2018` in `hafas`. 
+
+3. Corsica
+    - Download the switchdrive zip file provided. 
 
 ## How to run this component in docker. 
 
@@ -37,8 +40,21 @@ docker build -t odtp-eqasim .
 
 3. Depending on your scenario add the parameters requested:
 
+For Corsica:
+```
+SCENARIO=CORSICA
+PIPELINE=Synthesis
+processes=4
+hts=entd
+sampling_rate=0.001
+random_seed=1234
+java_memory=8GB
+```
+
 For IDF
 ```
+SCENARIO=IDF
+PIPELINE=Synthesis
 processes=8
 sampling_rate=0.001
 random_seed=1234
@@ -48,6 +64,8 @@ hts=entd
 
 For CH
 ```
+SCENARIO=CH
+PIPELINE=Synthesis
 threads=4
 random_seed=0
 hot_deck_matching_runnners=2
@@ -60,10 +78,10 @@ hafas_date=01.10.2018
 output_id=test
 ```
 
-4. Run the following command. Select the correct volume folder, the `SCENARIO` you want to simulate (`"IDF"` or `"CH"`) and the MONGODB_CLIENT URL. 
+4. Run the following command. Select the correct volume folder, the `SCENARIO` you want to simulate (`"IDF"`, `CORSICA`, or `"CH"`) and the MONGODB_CLIENT URL. 
 
 ```
-docker run -it --rm -v {PATH_TO_YOUR_VOLUME}:/odtp/odtp-volume --env-file .env odtp-eqasim
+docker run -it --rm -v {PATH_TO_YOUR_INPUT_VOLUME}:/odtp/odtp-input -v {PATH_TO_YOUR_OUTPUT_VOLUME}:/odtp/odtp-output --env-file .env odtp-eqasim
 ```
 
 ## Example of tmux session
@@ -100,7 +118,9 @@ If you want to kill the session just write `exit`. Also use `tmux ls` to list al
 
 ## Changelog
 
-- v.0.1.0: Version compatible with IDF & CH
+- v0.2.0: Version compatible with IDF, CH & Corsica
+
+- v0.1.0: Version compatible with IDF & CH
     - Parameters. Now the parameters are taken from the enviroment variables. 
     - Configuration templates. No needs of copying config.yml file anymore. The file will be built based on the parameters.
     - Logger: If MongoDB arg. provided the container will log its activity in the db. 

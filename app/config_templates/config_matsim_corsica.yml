@@ -1,4 +1,4 @@
-## Synthetic population pipeline for Île-de-France
+## Synthetic population pipeline for Corsica
 ## based on the synpp package
 
 # This is the path to a directory where the pipeline can store temporary data
@@ -6,7 +6,7 @@ working_directory: /odtp/odtp-workdir/cache
 
 # This section defines which parts of the pipeline should be run
 run:
-  - synthesis.output # To create the output population in the output_path (see below)
+  - matsim.output
 
 # Here the configuraiton of the pipeline starts
 config:
@@ -25,6 +25,18 @@ config:
   # Paths to the input data and where the output should be stored
   data_path: /odtp/odtp-workdir/data
   output_path: /odtp/odtp-workdir/output
+  output_prefix: eqsim_
 
   # Only interesting if you run the simulation
   java_memory: {{java_memory}}
+
+  # Activate if you want to run mode choice
+  mode_choice: false
+
+  # Corsica settings
+  regions: [94]
+  gtfs_path: gtfs_corsica
+  osm_path: osm_corsica
+  ban_path: ban_corsica
+  bdtopo_path: bdtopo_corsica
+  matching_minimum_observations: 5

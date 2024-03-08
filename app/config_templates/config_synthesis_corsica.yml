@@ -1,4 +1,4 @@
-## Synthetic population pipeline for Île-de-France
+## Synthetic population pipeline for Corsica
 ## based on the synpp package
 
 # This is the path to a directory where the pipeline can store temporary data
@@ -6,31 +6,37 @@ working_directory: /odtp/odtp-workdir/cache
 
 # This section defines which parts of the pipeline should be run
 run:
-  - synthesis.output # To create the output population in the output_path (see below)
-  - matsim.output # Uncomment, if you want to run the full simulation (you'll need Java for that)
+  - synthesis.output
 
 # Here the configuraiton of the pipeline starts
 config:
   # Some general configuration
-  processes: 8
+  processes: {{processes}}
   osmosis_binary: /tmp/osmosis/bin/osmosis
   maven_binary: /tmp/maven/apache-maven-3.6.3/bin/mvn
 
   # Define whether to use ENTD or EGT as the household travel survey (HTS)
-  hts: entd
+  hts: {{hts}}
 
   # Define sampling rate and random seed for the output population
-  sampling_rate: 0.001
-  random_seed: 1234
+  sampling_rate: {{sampling_rate}}
+  random_seed: {{random_seed}}
 
   # Paths to the input data and where the output should be stored
   data_path: /odtp/odtp-workdir/data
   output_path: /odtp/odtp-workdir/output
+  output_prefix: eqasim_
 
   # Only interesting if you run the simulation
-  java_memory: 24G
+  java_memory: {{java_memory}}
 
-  # Uncommented below to enable vehicle fleet generation
-  # generate_vehicles_file: True
-  # generate_vehicles_method: fleet_sample
-  # vehicles_data_year: 2015
+  # Activate if you want to run mode choice
+  mode_choice: false
+
+  # Corsica settings
+  regions: [94]
+  gtfs_path: gtfs_corsica
+  osm_path: osm_corsica
+  ban_path: ban_corsica
+  bdtopo_path: bdtopo_corsica
+  matching_minimum_observations: 5
