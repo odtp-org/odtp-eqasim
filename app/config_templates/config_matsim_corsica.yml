@@ -2,32 +2,33 @@
 ## based on the synpp package
 
 # This is the path to a directory where the pipeline can store temporary data
-working_directory: cache
+working_directory: /odtp/odtp-workdir/cache
 
 # This section defines which parts of the pipeline should be run
 run:
-  - synthesis.output # To create the output population in the output_path (see below)
-  - matsim.output # Uncomment, if you want to run the full simulation (you'll need Java for that)
+  - matsim.output
 
 # Here the configuraiton of the pipeline starts
 config:
   # Some general configuration
-  processes: [processes]
+  processes: {{processes}}
+  osmosis_binary: /tmp/osmosis/bin/osmosis
+  maven_binary: /tmp/maven/apache-maven-3.6.3/bin/mvn
 
   # Define whether to use ENTD or EGT as the household travel survey (HTS)
-  hts: [hts]
+  hts: {{hts}}
 
   # Define sampling rate and random seed for the output population
-  sampling_rate: [sampling_rate]
-  random_seed: [random_seed]
+  sampling_rate: {{sampling_rate}}
+  random_seed: {{random_seed}}
 
   # Paths to the input data and where the output should be stored
-  data_path: /path/to/my/data
-  output_path: output
-  output_prefix: corsica_
+  data_path: /odtp/odtp-workdir/data
+  output_path: /odtp/odtp-workdir/output
+  output_prefix: eqsim_
 
   # Only interesting if you run the simulation
-  java_memory: [java_memory]
+  java_memory: {{java_memory}}
 
   # Activate if you want to run mode choice
   mode_choice: false
