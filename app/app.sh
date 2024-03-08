@@ -11,10 +11,10 @@ if [ "$SCENARIO" == "IDF" ]; then
     # Reading placeholders and create config file from environment variables 
     if [ "$PIPELINE" == "Synthesis" ]; then
         echo "Running Synthesis PIPELINE"
-        python3 /odtp/odtp-client/parameters.py /odtp/odtp-app/config_templates/config_synthesis_idf.yml /odtp/odtp-workdir/scenario/config.yml
+        python3 /odtp/odtp-component-client/parameters.py /odtp/odtp-app/config_templates/config_synthesis_idf.yml /odtp/odtp-workdir/scenario/config.yml
     
         # Preparing input data folder
-        ln -s /odtp/odtp-input/data /odtp/odtp-workdir/data
+        ln -s /odtp/odtp-component-client/data /odtp/odtp-workdir/data
 
     else
         echo "Running Matsim PIPELINE"
@@ -41,14 +41,14 @@ elif [ "$SCENARIO" == "CORSICA" ]; then
     # Reading placeholders and create config file from environment variables
     if [ "$PIPELINE" == "Synthesis" ]; then
         echo "Running Synthesis PIPELINE"
-        python3 /odtp/odtp-client/parameters.py /odtp/odtp-app/config_templates/config_synthesis_corsica.yml /odtp/odtp-workdir/scenario/config.yml
+        python3 /odtp/odtp-component-client/parameters.py /odtp/odtp-app/config_templates/config_synthesis_corsica.yml /odtp/odtp-workdir/scenario/config.yml
     
         # Preparing input data folder
         ln -s /odtp/odtp-input/data /odtp/odtp-workdir/data
     
     else
         echo "Running Matsim PIPELINE"
-        python3 /odtp/odtp-client/parameters.py /odtp/odtp-app/config_templates/config_matsim_corsica.yml /odtp/odtp-workdir/scenario/config.yml
+        python3 /odtp/odtp-component-client/parameters.py /odtp/odtp-app/config_templates/config_matsim_corsica.yml /odtp/odtp-workdir/scenario/config.yml
 
         # Preparing input data folder
         ln -s /odtp/odtp-input/data /odtp/odtp-workdir/data
@@ -73,10 +73,10 @@ else
     # Reading placeholders and create config file from environment variables
     if [ "$PIPELINE" == "Synthesis" ]; then
         echo "Running Synthesis PIPELINE"
-        python3 /odtp/odtp-client/parameters.py /odtp/odtp-app/config_templates/config_synthesis_ch.yml /odtp/odtp-workdir/scenario/config.yml
+        python3 /odtp/odtp-component-client/parameters.py /odtp/odtp-app/config_templates/config_synthesis_ch.yml /odtp/odtp-workdir/scenario/config.yml
     
         # Preparing input data folder
-        ln -s /odtp/odtp-input/data /odtp/odtp-workdir/data
+        ln -s /odtp/odtp-component-client/data /odtp/odtp-workdir/data
     
     else
         echo "Running Matsim PIPELINE"
