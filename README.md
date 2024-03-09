@@ -131,3 +131,47 @@ If you want to kill the session just write `exit`. Also use `tmux ls` to list al
 ## Development. 
 
 Developed by SDSC/CSFM.
+
+
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for eqasim 1.3.1:
+[INFO] 
+[INFO] eqasim ............................................. FAILURE [03:04 min]
+[INFO] core ............................................... SKIPPED
+[INFO] ile_de_france ...................................... SKIPPED
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  03:07 min
+[INFO] Finished at: 2024-03-09T11:59:38Z
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal on project eqasim: Could not resolve dependencies for project org.eqasim:eqasim:pom:1.3.1: Could not transfer artifact org.geotools:gt-opengis:jar:24.2 from/to osgeo (https://repo.osgeo.org/repository/release/): GET request of: org/geotools/gt-opengis/24.2/gt-opengis-24.2.jar from osgeo failed: Connection reset -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/DependencyResolutionException
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/usr/local/lib/python3.10/dist-packages/synpp/__main__.py", line 14, in <module>
+    synpp.run_from_yaml(config_path)
+  File "/usr/local/lib/python3.10/dist-packages/synpp/pipeline.py", line 886, in run_from_yaml
+    Synpp.build_from_yml(path).run_pipeline()
+  File "/usr/local/lib/python3.10/dist-packages/synpp/pipeline.py", line 910, in run_pipeline
+    return run(definitions, self.config, self.working_directory, flowchart_path=flowchart_path,
+  File "/usr/local/lib/python3.10/dist-packages/synpp/pipeline.py", line 810, in run
+    result = stage["wrapper"].execute(context)
+  File "/usr/local/lib/python3.10/dist-packages/synpp/pipeline.py", line 88, in execute
+    return self.instance.execute(context)
+  File "/odtp/odtp-workdir/scenario/matsim/runtime/eqasim.py", line 55, in execute
+    maven.run(context, ["-Pstandalone", "--projects", "ile_de_france", "--also-make", "package", "-DskipTests=true"], cwd = "%s/eqasim-java" % context.path())
+  File "/odtp/odtp-workdir/scenario/matsim/runtime/maven.py", line 34, in run
+    return_code = sp.check_call(command_line, cwd = cwd)
+  File "/usr/lib/python3.10/subprocess.py", line 369, in check_call
+    raise CalledProcessError(retcode, cmd)
+subprocess.CalledProcessError: Command '['/tmp/maven/apache-maven-3.6.3/bin/mvn', '-Djava.io.tmpdir=/odtp/odtp-workdir/cache/matsim.runtime.eqasim__e6e89366dc968ee0f589299abca885c6.cache/__java_temp', '-Pstandalone', '--projects', 'ile_de_france', '--also-make', 'package', '-DskipTests=true']' returned non-zero exit status 1.
+mkdir: cannot create directory '/odtp/odtp-output/eqasim-output': File exists

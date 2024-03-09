@@ -93,6 +93,13 @@ fi
 # Running Eqasim pipeline
 python3 -m synpp
 
+if [ "$PIPELINE" == "Matsim" ]; then
+    # For some reason it fails the first time the command is executed with a maven related 
+    # Could not transfer artifact org.geotools:gt-opengis:jar:24.2 from/to osgeo
+    sleep 10
+    python3 -m synpp
+fi
+
 # Copying output in odtp-output
 mkdir /odtp/odtp-output/eqasim-output
 cp -r /odtp/odtp-workdir/output/* /odtp/odtp-output/eqasim-output
