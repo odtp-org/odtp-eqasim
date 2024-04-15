@@ -12,7 +12,7 @@ ODTP component for running Eqasim.
 ## ODTP command 
 
 ```odtp new component 
-odtp new odtp-eqasim\
+odtp new odtp-component-entry\
 --name odtp-eqasim \
 --component-version 0.4.0 \
 --repository https://github.com/odtp-org/odtp-eqasim
