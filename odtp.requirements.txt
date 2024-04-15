@@ -1,5 +1,0 @@
-pymongo
-boto3
-PyYAML
-#fastapi
-#uvicorn

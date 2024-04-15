@@ -1,7 +1,26 @@
 # ODTP Eqasim Component
 ODTP component for running Eqasim. 
 
-## Prepare dataset
+| Tool Info | Links |
+| --- | --- |
+| Original Tool (IDF & Corsica)| [https://github.com/eqasim-org/ile-de-france](https://github.com/eqasim-org/ile-de-france) |
+| Current Tool Version (IDF & Corsica) | [fb1112d2a7d1817746be84413da584c391059ad1](https://github.com/eqasim-org/ile-de-france/commit/fb1112d2a7d1817746be84413da584c391059ad1) |
+| Original Tool (CH Scenario)| [https://gitlab.ethz.ch/ivt-vpl/populations/ch-zh-synpop](https://gitlab.ethz.ch/ivt-vpl/populations/ch-zh-synpop) |
+| Current Tool Version (CH Scenario) | [4658daa2e441dcda132622e7fcb47da1df8c47d6](https://gitlab.ethz.ch/ivt-vpl/populations/ch-zh-synpop/-/commit/4658daa2e441dcda132622e7fcb47da1df8c47d6) |
+
+
+## ODTP command 
+
+```odtp new component 
+odtp new odtp-eqasim-matsim\
+--name odtp-eqasim \
+--component-version 0.4.0 \
+--repository https://github.com/odtp-org/odtp-eqasim
+``` 
+
+## Tutorial
+
+### Prepare dataset
 
 1. IDF
     - Download the switchdrive zip file provided. 
@@ -12,7 +31,7 @@ ODTP component for running Eqasim.
 3. Corsica
     - Download the switchdrive zip file provided. 
 
-## How to run this component in docker. 
+### How to run this component in docker. 
 
 1. Prepare manually a folder called `odtp-input` containing the following datafolder of our selected scenario:
 
@@ -20,12 +39,11 @@ ODTP component for running Eqasim.
 
 2. Create your `.env` file with this structure.
 
-Add the selected scenario `IDF`, or `CH`. Also select the eqasim pipeline you want to run `Synthesis`, or `Matsim`.
+Add the selected scenario `CORSICA`, `IDF`, or `CH`.
 
 For Corsica:
 ```
 SCENARIO=CORSICA
-PIPELINE=Synthesis
 processes=4
 hts=entd
 sampling_rate=0.001
@@ -36,7 +54,6 @@ java_memory=8GB
 For IDF
 ```
 SCENARIO=IDF
-PIPELINE=Synthesis
 processes=8
 sampling_rate=0.001
 random_seed=1234
@@ -47,7 +64,6 @@ hts=entd
 For CH
 ```
 SCENARIO=CH
-PIPELINE=Synthesis
 threads=4
 random_seed=0
 hot_deck_matching_runnners=2
@@ -77,9 +93,9 @@ docker run -it --rm \
 
 
 
-## Example of tmux session
+### Example of tmux session
 
-In this example you will run the isolated container with the CORSICA scenario.
+In order to run this container in a remote server and detach from the task you can use `tmux`. In this example you will run the isolated container with the CORSICA scenario.
 
 ```
 tmux new -s odtp-test
@@ -87,7 +103,6 @@ docker run -it --rm \
 -v {PATH_TO_YOUR_INPUT_VOLUME}:/odtp/odtp-input \
 -v {PATH_TO_YOUR_INPUT_VOLUME}:/odtp/odtp-output \ 
 -e SCENARIO=CORSICA \
--e PIPELINE=Synthesis \
 -e processes=4 \
 -e hts=entd \
 -e sampling_rate=0.001 \
@@ -103,20 +118,11 @@ tmux attach-session -t odtp-test
 ```
 If you want to kill the session just write `exit`. Also use `tmux ls` to list all available tmux sessions.
 
-## Usage with ODTP
-
-To connect this docker with an existing implementation of ODTP the following variables should be added to the env file. 
-
-```
-ODTP_MONGO_SERVER="mongodb://USER:PASSWORD@.....
-ODTP_S3_SERVER=http://....
-ODTP_BUCKET_NAME=...
-ODTP_ACCESS_KEY=....
-ODTP_SECRET_KEY=...
-```
-
 
 ## Changelog
+
+- v0.4.0 Synthesis pipeline separated from matsim 
+    -  Matsim pipeline: https://github.com/odtp-org/odtp-eqasim-matsim
 
 - v0.3.0 Corsica compatibility
     - Updating odtp-component-client to submodule

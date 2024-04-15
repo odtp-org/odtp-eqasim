@@ -9,24 +9,12 @@ if [ "$SCENARIO" == "IDF" ]; then
 
     # Preparing parameters & config file
     # Reading placeholders and create config file from environment variables 
-    if [ "$PIPELINE" == "Synthesis" ]; then
-        echo "Running Synthesis PIPELINE"
-        python3 /odtp/odtp-component-client/parameters.py /odtp/odtp-app/config_templates/config_synthesis_idf.yml /odtp/odtp-workdir/scenario/config.yml
-    
-        # Preparing input data folder
-        ln -s /odtp/odtp-component-client/data /odtp/odtp-workdir/data
+    echo "Running Synthesis PIPELINE"
+    python3 /odtp/odtp-component-client/parameters.py /odtp/odtp-app/config_templates/config_synthesis_idf.yml /odtp/odtp-workdir/scenario/config.yml
 
-    else
-        echo "Running Matsim PIPELINE"
-        python3 /odtp/odtp-client/parameters.py /odtp/odtp-app/config_templates/config_matsim_idf.yml /odtp/odtp-workdir/scenario/config.yml
-    
-        # Preparing input data folder
-        ln -s /odtp/odtp-input/data /odtp/odtp-workdir/data
+    # Preparing input data folder
+    ln -s /odtp/odtp-component-client/data /odtp/odtp-workdir/data
 
-        # We need to copy output files from previous step in output folder
-        cp -r /odtp/odtp-input/eqasim-output/* /odtp/odtp-workdir/output
-    
-    fi
 
 
 elif [ "$SCENARIO" == "CORSICA" ]; then
@@ -39,26 +27,12 @@ elif [ "$SCENARIO" == "CORSICA" ]; then
 
     # Preparing parameters & config file
     # Reading placeholders and create config file from environment variables
-    if [ "$PIPELINE" == "Synthesis" ]; then
-        echo "Running Synthesis PIPELINE"
-        python3 /odtp/odtp-component-client/parameters.py /odtp/odtp-app/config_templates/config_synthesis_corsica.yml /odtp/odtp-workdir/scenario/config.yml
-    
-        # Preparing input data folder
-        ln -s /odtp/odtp-input/data /odtp/odtp-workdir/data
-    
-    else
-        echo "Running Matsim PIPELINE"
-        python3 /odtp/odtp-component-client/parameters.py /odtp/odtp-app/config_templates/config_matsim_corsica.yml /odtp/odtp-workdir/scenario/config.yml
+    echo "Running Synthesis PIPELINE"
+    python3 /odtp/odtp-component-client/parameters.py /odtp/odtp-app/config_templates/config_synthesis_corsica.yml /odtp/odtp-workdir/scenario/config.yml
 
-        # Preparing input data folder
-        ln -s /odtp/odtp-input/data /odtp/odtp-workdir/data
+    # Preparing input data folder
+    ln -s /odtp/odtp-input/data /odtp/odtp-workdir/data
 
-        # We need to copy output files from previous step in output folder
-        cp -r /odtp/odtp-input/eqasim-output/* /odtp/odtp-workdir/output
-
-        # Cache files are needed
-        cp -r /odtp/odtp-input/cache/* /odtp/odtp-workdir/cache
-    fi
 
 else
     echo "CH SCENARIO."
@@ -71,43 +45,26 @@ else
     
     # Preparing parameters & config file
     # Reading placeholders and create config file from environment variables
-    if [ "$PIPELINE" == "Synthesis" ]; then
-        echo "Running Synthesis PIPELINE"
-        python3 /odtp/odtp-component-client/parameters.py /odtp/odtp-app/config_templates/config_synthesis_ch.yml /odtp/odtp-workdir/scenario/config.yml
-    
-        # Preparing input data folder
-        ln -s /odtp/odtp-component-client/data /odtp/odtp-workdir/data
-    
-    else
-        echo "Running Matsim PIPELINE"
-        python3 /odtp/odtp-client/parameters.py /odtp/odtp-app/config_templates/config_matsim_ch.yml /odtp/odtp-workdir/scenario/config.yml
-    
-        # Preparing input data folder
-        ln -s /odtp/odtp-input/data /odtp/odtp-workdir/data
+    echo "Running Synthesis PIPELINE"
+    python3 /odtp/odtp-component-client/parameters.py /odtp/odtp-app/config_templates/config_synthesis_ch.yml /odtp/odtp-workdir/scenario/config.yml
 
-        # We need to copy output files from previous step in output folder
-        cp -r /odtp/odtp-input/eqasim-output/* /odtp/odtp-workdir/output
-    fi
+    # Preparing input data folder
+    ln -s /odtp/odtp-component-client/data /odtp/odtp-workdir/data
+    
+
 fi
 
 # Running Eqasim pipeline
 python3 -m synpp
 
-if [ "$PIPELINE" == "Matsim" ]; then
-    # For some reason it fails the first time the command is executed with a maven related 
-    # Could not transfer artifact org.geotools:gt-opengis:jar:24.2 from/to osgeo
-    sleep 10
-    python3 -m synpp
-fi
 
 # Copying output in odtp-output
 mkdir /odtp/odtp-output/eqasim-output
 cp -r /odtp/odtp-workdir/output/* /odtp/odtp-output/eqasim-output
 
-# Copying cache neccesary for running matsim.output
-if [ "$PIPELINE" == "Synthesis" ]; then
-    mkdir /odtp/odtp-output/cache
-    #cp /odtp/odtp-workdir/cache/pipeline.json /odtp/odtp-output/cache/pipeline.json
-    cp -r /odtp/odtp-workdir/cache/* /odtp/odtp-output/cache
-fi
+# Copying cache neccesary for running matsim.output in following steps
+mkdir /odtp/odtp-output/cache
+#cp /odtp/odtp-workdir/cache/pipeline.json /odtp/odtp-output/cache/pipeline.json
+cp -r /odtp/odtp-workdir/cache/* /odtp/odtp-output/cache
+
 
