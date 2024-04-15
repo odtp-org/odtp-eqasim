@@ -14,31 +14,13 @@ ODTP component for running Eqasim.
 
 ## How to run this component in docker. 
 
-1. Prepare manually a folder called volume containing the following datafolder of our selected scenario:
+1. Prepare manually a folder called `odtp-input` containing the following datafolder of our selected scenario:
 
 - data
 
-2. Create your `.env` file with this structure. **If you do not have MONGODB and/or S3 activated omit this step, and just provide the scenario as environmental variable.**
+2. Create your `.env` file with this structure.
 
-Add the selected scenario `IDF`, or `CH`. Also select the eqasim pipeline you want to run `Synthesis`, or `matsim`.
-
-```
-SCENARIO=IDF
-PIPELINE=Synthesis
-MONGODB_CLIENT=mongodb://.....
-S3_SERVER=https://....
-S3_ACCESS_KEY=Q0ISQ....
-S3_SECRET_KEY=OoPthI....
-S3_BUCKET_NAME=13301....
-```
-
-3. Build the dockerfile 
-
-```
-docker build -t odtp-eqasim .
-```
-
-3. Depending on your scenario add the parameters requested:
+Add the selected scenario `IDF`, or `CH`. Also select the eqasim pipeline you want to run `Synthesis`, or `Matsim`.
 
 For Corsica:
 ```
@@ -78,19 +60,40 @@ hafas_date=01.10.2018
 output_id=test
 ```
 
-4. Run the following command. Select the correct volume folder, the `SCENARIO` you want to simulate (`"IDF"`, `CORSICA`, or `"CH"`) and the MONGODB_CLIENT URL. 
+3. Build the dockerfile 
 
 ```
-docker run -it --rm -v {PATH_TO_YOUR_INPUT_VOLUME}:/odtp/odtp-input -v {PATH_TO_YOUR_OUTPUT_VOLUME}:/odtp/odtp-output --env-file .env odtp-eqasim
+docker build -t odtp-eqasim .
 ```
+
+4. Run the following command. Mount the correct volumes for input/output folders. 
+
+```
+docker run -it --rm \
+-v {PATH_TO_YOUR_INPUT_VOLUME}:/odtp/odtp-input \
+-v {PATH_TO_YOUR_OUTPUT_VOLUME}:/odtp/odtp-output \
+--env-file .env odtp-eqasim
+```
+
+
 
 ## Example of tmux session
 
-In this example you will run the isolated container with the CH scenario.
+In this example you will run the isolated container with the CORSICA scenario.
 
 ```
 tmux new -s odtp-test
-docker run -it --rm -v /home/vivar/odtp-tutorial/volume-ch:/odtp/odtp-volume -e SCENARIO=CH --name odtp-test odtp-eqasim
+docker run -it --rm \
+-v {PATH_TO_YOUR_INPUT_VOLUME}:/odtp/odtp-input \
+-v {PATH_TO_YOUR_INPUT_VOLUME}:/odtp/odtp-output \ 
+-e SCENARIO=CORSICA \
+-e PIPELINE=Synthesis \
+-e processes=4 \
+-e hts=entd \
+-e sampling_rate=0.001 \
+-e random_seed=1234 \
+-e java_memory=8GB \
+--name odtp-eqasim odtp-eqasim
 ```
 
 Now you can push Control + B, and then D to dettach from the tmux session. In order to come back to the session you can do: 
@@ -100,25 +103,26 @@ tmux attach-session -t odtp-test
 ```
 If you want to kill the session just write `exit`. Also use `tmux ls` to list all available tmux sessions.
 
+## Usage with ODTP
 
-## Description of files
+To connect this docker with an existing implementation of ODTP the following variables should be added to the env file. 
 
-- app/startup.ch
-    - This file is the entrypoint. Check the scenario and keep log of all stout. 
-- app/idf.ch
-    - Pull IDF repo. Launch the pipeline. Activate logger and s3 uploaders. Compress output and workdir. 
-- app/ch.ch
-    - Pull CH repo. Launch the pipeline. Activate logger and s3 uploaders. Compress output and workdir. 
-- logger.py
-    - Check log.txt and uploads stout to MongoDB
-- s3uploader.py
-    - Upload output.zip & workdir.zip to S3. Create a mongodb entry. 
-- parameters.py
-    - Takes care of replacing the placeholder on the config templates.
+```
+ODTP_MONGO_SERVER="mongodb://USER:PASSWORD@.....
+ODTP_S3_SERVER=http://....
+ODTP_BUCKET_NAME=...
+ODTP_ACCESS_KEY=....
+ODTP_SECRET_KEY=...
+```
+
 
 ## Changelog
 
-- v0.2.0: Version compatible with IDF, CH & Corsica
+- v0.3.0 Corsica compatibility
+    - Updating odtp-component-client to submodule
+    - Output now delivers `eqasim-output` and `cache`. 
+
+- v0.2.0: Version compatible with IDF & CH.
 
 - v0.1.0: Version compatible with IDF & CH
     - Parameters. Now the parameters are taken from the enviroment variables. 

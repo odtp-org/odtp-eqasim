@@ -11,10 +11,10 @@ if [ "$SCENARIO" == "IDF" ]; then
     # Reading placeholders and create config file from environment variables 
     if [ "$PIPELINE" == "Synthesis" ]; then
         echo "Running Synthesis PIPELINE"
-        python3 /odtp/odtp-client/parameters.py /odtp/odtp-app/config_templates/config_synthesis_idf.yml /odtp/odtp-workdir/scenario/config.yml
+        python3 /odtp/odtp-component-client/parameters.py /odtp/odtp-app/config_templates/config_synthesis_idf.yml /odtp/odtp-workdir/scenario/config.yml
     
         # Preparing input data folder
-        ln -s /odtp/odtp-input/data /odtp/odtp-workdir/data
+        ln -s /odtp/odtp-component-client/data /odtp/odtp-workdir/data
 
     else
         echo "Running Matsim PIPELINE"
@@ -41,14 +41,14 @@ elif [ "$SCENARIO" == "CORSICA" ]; then
     # Reading placeholders and create config file from environment variables
     if [ "$PIPELINE" == "Synthesis" ]; then
         echo "Running Synthesis PIPELINE"
-        python3 /odtp/odtp-client/parameters.py /odtp/odtp-app/config_templates/config_synthesis_corsica.yml /odtp/odtp-workdir/scenario/config.yml
+        python3 /odtp/odtp-component-client/parameters.py /odtp/odtp-app/config_templates/config_synthesis_corsica.yml /odtp/odtp-workdir/scenario/config.yml
     
         # Preparing input data folder
         ln -s /odtp/odtp-input/data /odtp/odtp-workdir/data
     
     else
         echo "Running Matsim PIPELINE"
-        python3 /odtp/odtp-client/parameters.py /odtp/odtp-app/config_templates/config_matsim_corsica.yml /odtp/odtp-workdir/scenario/config.yml
+        python3 /odtp/odtp-component-client/parameters.py /odtp/odtp-app/config_templates/config_matsim_corsica.yml /odtp/odtp-workdir/scenario/config.yml
 
         # Preparing input data folder
         ln -s /odtp/odtp-input/data /odtp/odtp-workdir/data
@@ -73,10 +73,10 @@ else
     # Reading placeholders and create config file from environment variables
     if [ "$PIPELINE" == "Synthesis" ]; then
         echo "Running Synthesis PIPELINE"
-        python3 /odtp/odtp-client/parameters.py /odtp/odtp-app/config_templates/config_synthesis_ch.yml /odtp/odtp-workdir/scenario/config.yml
+        python3 /odtp/odtp-component-client/parameters.py /odtp/odtp-app/config_templates/config_synthesis_ch.yml /odtp/odtp-workdir/scenario/config.yml
     
         # Preparing input data folder
-        ln -s /odtp/odtp-input/data /odtp/odtp-workdir/data
+        ln -s /odtp/odtp-component-client/data /odtp/odtp-workdir/data
     
     else
         echo "Running Matsim PIPELINE"
@@ -92,6 +92,13 @@ fi
 
 # Running Eqasim pipeline
 python3 -m synpp
+
+if [ "$PIPELINE" == "Matsim" ]; then
+    # For some reason it fails the first time the command is executed with a maven related 
+    # Could not transfer artifact org.geotools:gt-opengis:jar:24.2 from/to osgeo
+    sleep 10
+    python3 -m synpp
+fi
 
 # Copying output in odtp-output
 mkdir /odtp/odtp-output/eqasim-output
