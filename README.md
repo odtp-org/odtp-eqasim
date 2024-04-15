@@ -3,10 +3,10 @@ ODTP component for running Eqasim.
 
 | Tool Info | Links |
 | --- | --- |
-| Original Tool (IDF & Corisca)| [https://github.com/eqasim-org/ile-de-france](https://github.com/eqasim-org/ile-de-france) |
-| Current Tool Version (IDF & Corisca) | [fb1112d2a7d1817746be84413da584c391059ad1](https://github.com/eqasim-org/ile-de-france/commit/fb1112d2a7d1817746be84413da584c391059ad1) |
-| Original Tool (IDF & Corisca)| [https://gitlab.ethz.ch/ivt-vpl/populations/ch-zh-synpop](https://gitlab.ethz.ch/ivt-vpl/populations/ch-zh-synpop) |
-| Current Tool Version (IDF & Corisca) | [4658daa2e441dcda132622e7fcb47da1df8c47d6](https://gitlab.ethz.ch/ivt-vpl/populations/ch-zh-synpop/-/commit/4658daa2e441dcda132622e7fcb47da1df8c47d6) |
+| Original Tool (IDF & Corsica)| [https://github.com/eqasim-org/ile-de-france](https://github.com/eqasim-org/ile-de-france) |
+| Current Tool Version (IDF & Corsica) | [fb1112d2a7d1817746be84413da584c391059ad1](https://github.com/eqasim-org/ile-de-france/commit/fb1112d2a7d1817746be84413da584c391059ad1) |
+| Original Tool (CH Scenario)| [https://gitlab.ethz.ch/ivt-vpl/populations/ch-zh-synpop](https://gitlab.ethz.ch/ivt-vpl/populations/ch-zh-synpop) |
+| Current Tool Version (CH Scenario) | [4658daa2e441dcda132622e7fcb47da1df8c47d6](https://gitlab.ethz.ch/ivt-vpl/populations/ch-zh-synpop/-/commit/4658daa2e441dcda132622e7fcb47da1df8c47d6) |
 
 
 ## ODTP command 
