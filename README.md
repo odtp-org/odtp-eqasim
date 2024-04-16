@@ -14,7 +14,7 @@ ODTP component for running Eqasim.
 ```odtp new component 
 odtp new odtp-component-entry \
 --name odtp-eqasim \
---component-version 0.4.0 \
+--component-version 0.4.2 \
 --repository https://github.com/odtp-org/odtp-eqasim.git
 ``` 
 
