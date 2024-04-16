@@ -27,7 +27,7 @@ RUN apt-get update && apt-get -y upgrade \
 # ODTP setup
 ##################################################
 
-COPY odtp.requirements.txt /tmp/odtp.requirements.txt
+COPY odtp-component-client/requirements.txt /tmp/odtp.requirements.txt
 RUN pip install -r /tmp/odtp.requirements.txt
 
 ##################################################
