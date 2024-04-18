@@ -25,7 +25,7 @@ config:
   # Paths to the input data and where the output should be stored
   data_path: /odtp/odtp-workdir/data
   output_path: /odtp/odtp-workdir/output
-  output_prefix: eqasim_
+  output_prefix: {{output_id}}
 
   # Only interesting if you run the simulation
   java_memory: {{java_memory}}
