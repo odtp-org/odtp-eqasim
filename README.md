@@ -123,7 +123,7 @@ If you want to kill the session just write `exit`. Also use `tmux ls` to list al
 
 - v0.4.3
     - Ubuntu fixed at 22.04
-    - Python fixed at 3.11
+    - Python fixed at 3.10
 
 - v0.4.2
     - Updated `odtp-component-client`
