@@ -121,6 +121,10 @@ If you want to kill the session just write `exit`. Also use `tmux ls` to list al
 
 ## Changelog
 
+- v0.4.3
+    - Ubuntu fixed at 22.04
+    - Python fixed at 3.11
+
 - v0.4.2
     - Updated `odtp-component-client`
     - Corrected typo in `odtp.yml` regarding component license
