@@ -63,12 +63,15 @@ RUN tar xf /tmp/osmosis.tgz -C /tmp/osmosis
 RUN apt-get update && \
     apt-get install -y libgdal-dev && \
     apt-get clean;
+RUN export CPLUS_INCLUDE_PATH=/usr/include/gdal
+RUN export C_INCLUDE_PATH=/usr/include/gdal
 
 ##################################################
 # Eqasim setup
 ##################################################
 
 COPY requirements.txt /tmp/requirements.txt
+RUN pip install --upgrade pip
 RUN pip install -r /tmp/requirements.txt
 
 

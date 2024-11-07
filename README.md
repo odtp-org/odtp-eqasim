@@ -14,7 +14,7 @@ ODTP component for running Eqasim.
 ```odtp new component 
 odtp new odtp-component-entry \
 --name odtp-eqasim \
---component-version 0.4.2 \
+--component-version 0.4.4 \
 --repository https://github.com/odtp-org/odtp-eqasim.git
 ``` 
 
@@ -121,6 +121,10 @@ If you want to kill the session just write `exit`. Also use `tmux ls` to list al
 
 ## Changelog
 
+- v0.4.4
+    - Rasterio 1.3.8 included in `requirements.txt` to avoid building errors
+    - odtp-component-client upgrade to v0.1.1
+
 - v0.4.3
     - Ubuntu fixed at 22.04
     - Python fixed at 3.10
@@ -149,6 +153,21 @@ If you want to kill the session just write `exit`. Also use `tmux ls` to list al
     - S3 Compatibility: Output content, and snapshots can be uploaded to the S3 server.
 
 - v0.0.1: Version compatible with IDF
+
+## Known errors
+
+- "GPC error": This usually happening when building the image and there is not enough space in the system.
+    ```
+    4.082 W: GPG error: http://archive.ubuntu.com/ubuntu jammy InRelease: At least one invalid signature was encountered.
+4.082 E: The repository 'http://archive.ubuntu.com/ubuntu jammy InRelease' is not signed.
+4.082 W: GPG error: http://archive.ubuntu.com/ubuntu jammy-updates InRelease: At least one invalid signature was encountered.
+4.082 E: The repository 'http://archive.ubuntu.com/ubuntu jammy-updates InRelease' is not signed.
+4.082 W: GPG error: http://archive.ubuntu.com/ubuntu jammy-backports InRelease: At least one invalid signature was encountered.
+4.082 E: The repository 'http://archive.ubuntu.com/ubuntu jammy-backports InRelease' is not signed.
+4.082 W: GPG error: http://security.ubuntu.com/ubuntu jammy-security InRelease: At least one invalid signature was encountered.
+4.082 E: The repository 'http://security.ubuntu.com/ubuntu jammy-security InRelease' is not signed.
+```
+
 
 ## Development. 
 
