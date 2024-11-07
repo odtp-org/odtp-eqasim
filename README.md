@@ -14,7 +14,7 @@ ODTP component for running Eqasim.
 ```odtp new component 
 odtp new odtp-component-entry \
 --name odtp-eqasim \
---component-version 0.4.3 \
+--component-version 0.4.4 \
 --repository https://github.com/odtp-org/odtp-eqasim.git
 ``` 
 
@@ -120,6 +120,10 @@ If you want to kill the session just write `exit`. Also use `tmux ls` to list al
 
 
 ## Changelog
+
+- v0.4.4
+    - Rasterio 1.3.8 included in `requirements.txt` to avoid building errors
+    - odtp-component-client upgrade to v0.1.1
 
 - v0.4.3
     - Ubuntu fixed at 22.04
