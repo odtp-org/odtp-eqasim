@@ -150,6 +150,21 @@ If you want to kill the session just write `exit`. Also use `tmux ls` to list al
 
 - v0.0.1: Version compatible with IDF
 
+## Known errors
+
+- "GPC error": This usually happening when building the image and there is not enough space in the system.
+    ```
+    4.082 W: GPG error: http://archive.ubuntu.com/ubuntu jammy InRelease: At least one invalid signature was encountered.
+4.082 E: The repository 'http://archive.ubuntu.com/ubuntu jammy InRelease' is not signed.
+4.082 W: GPG error: http://archive.ubuntu.com/ubuntu jammy-updates InRelease: At least one invalid signature was encountered.
+4.082 E: The repository 'http://archive.ubuntu.com/ubuntu jammy-updates InRelease' is not signed.
+4.082 W: GPG error: http://archive.ubuntu.com/ubuntu jammy-backports InRelease: At least one invalid signature was encountered.
+4.082 E: The repository 'http://archive.ubuntu.com/ubuntu jammy-backports InRelease' is not signed.
+4.082 W: GPG error: http://security.ubuntu.com/ubuntu jammy-security InRelease: At least one invalid signature was encountered.
+4.082 E: The repository 'http://security.ubuntu.com/ubuntu jammy-security InRelease' is not signed.
+```
+
+
 ## Development. 
 
 Developed by SDSC/CSFM.
