@@ -1,27 +1,23 @@
 FROM ubuntu:22.04
 
-RUN apt update
-RUN apt install python3.10 python3-pip -y 
-
 ##################################################
 # Ubuntu setup
 ##################################################
 
-RUN  apt-get update \
-  && apt-get install -y wget \
-  && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get update && apt-get -y upgrade \
-  && apt-get install -y --no-install-recommends \
+# Ubuntu setup
+RUN apt update && apt install -y \
+    python3.10 \
+    python3-pip \
+    wget \
     unzip \
     nano \
-    git \ 
+    git \
     g++ \
     gcc \
     htop \
     zip \
-    ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
+    ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
 
 ##################################################
 # ODTP setup
@@ -99,5 +95,8 @@ COPY ./odtp-component-client /odtp/odtp-component-client
 
 COPY ./app /odtp/odtp-app
 WORKDIR /odtp
+
+# Fix for end of the line issue on Windows. Avoid error when building on windows
+RUN find /odtp -type f -iname "*.sh" -exec sed -i 's/\r$//' {} \;
 
 ENTRYPOINT ["bash", "/odtp/odtp-component-client/startup.sh"]

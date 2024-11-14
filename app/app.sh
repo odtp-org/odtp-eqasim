@@ -5,7 +5,7 @@ if [ "$SCENARIO" == "IDF" ]; then
     # Cloning Scenario
     git clone https://github.com/eqasim-org/ile-de-france.git /odtp/odtp-workdir/scenario
     cd /odtp/odtp-workdir/scenario
-    git checkout fb1112d2a7d1817746be84413da584c391059ad1
+    git checkout 3c9b137b9e4b3c17e163cae2e170f18611adcf56
 
     # Preparing parameters & config file
     # Reading placeholders and create config file from environment variables 
@@ -23,7 +23,8 @@ elif [ "$SCENARIO" == "CORSICA" ]; then
     # Cloning Scenario
     git clone https://github.com/eqasim-org/ile-de-france.git /odtp/odtp-workdir/scenario
     cd /odtp/odtp-workdir/scenario
-    git checkout fb1112d2a7d1817746be84413da584c391059ad1
+    git checkout 3c9b137b9e4b3c17e163cae2e170f18611adcf56
+
 
     # Preparing parameters & config file
     # Reading placeholders and create config file from environment variables

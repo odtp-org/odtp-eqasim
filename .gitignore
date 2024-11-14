@@ -1,3 +1,9 @@
+# ODTP dev
+odtp
+odtp-input
+odtp-output
+odtp-logs   
+
 # Mac crap
 .DS_Store
 

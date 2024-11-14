@@ -4,7 +4,7 @@ ODTP component for running Eqasim.
 | Tool Info | Links |
 | --- | --- |
 | Original Tool (IDF & Corsica)| [https://github.com/eqasim-org/ile-de-france](https://github.com/eqasim-org/ile-de-france) |
-| Current Tool Version (IDF & Corsica) | [fb1112d2a7d1817746be84413da584c391059ad1](https://github.com/eqasim-org/ile-de-france/commit/fb1112d2a7d1817746be84413da584c391059ad1) |
+| Current Tool Version (IDF & Corsica) | [3c9b137b9e4b3c17e163cae2e170f18611adcf56](https://github.com/eqasim-org/ile-de-france/commit/3c9b137b9e4b3c17e163cae2e170f18611adcf56) |
 | Original Tool (CH Scenario)| [https://gitlab.ethz.ch/ivt-vpl/populations/ch-zh-synpop](https://gitlab.ethz.ch/ivt-vpl/populations/ch-zh-synpop) |
 | Current Tool Version (CH Scenario) | [4658daa2e441dcda132622e7fcb47da1df8c47d6](https://gitlab.ethz.ch/ivt-vpl/populations/ch-zh-synpop/-/commit/4658daa2e441dcda132622e7fcb47da1df8c47d6) |
 
@@ -86,10 +86,13 @@ docker build -t odtp-eqasim .
 
 ```
 docker run -it --rm \
--v {PATH_TO_YOUR_INPUT_VOLUME}:/odtp/odtp-input \
--v {PATH_TO_YOUR_OUTPUT_VOLUME}:/odtp/odtp-output \
+-v ${pwd}/odtp-input:/odtp/odtp-input \
+-v ${pwd}/odtp-output:/odtp/odtp-output \
+-v ${pwd}/odtp-logs:/odtp/odtp-logs \
 --env-file .env odtp-eqasim
 ```
+
+docker run -it --rm -v ${pwd}/odtp-input:/odtp/odtp-input -v ${pwd}/odtp-output:/odtp/odtp-output -v ${pwd}/odtp-logs:/odtp/odtp-logs --env-file .env --entrypoint bash odtp-eqasim
 
 
 
@@ -121,8 +124,10 @@ If you want to kill the session just write `exit`. Also use `tmux ls` to list al
 
 ## Changelog
 
+
 - v0.4.6
-    - Rasterio 1.3.8 included in `requirements.txt` to avoid building errors
+    - Rasterio 1.3.8, and fiona 1.9.6 included in `requirements.txt` to avoid building errors
+    - Version fixed at [`3c9b137b9e4b3c17e163cae2e170f18611adcf56`](https://github.com/eqasim-org/ile-de-france/commit/3c9b137b9e4b3c17e163cae2e170f18611adcf56) 
     - odtp-component-client upgrade to v0.1.1
     - included github-action for docker images building
 
