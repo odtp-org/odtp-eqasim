@@ -39,7 +39,7 @@ ports: null
 # Datatype can be str, int, float, or bool.
 parameters:
   - name: SCENARIO
-    default-value: CORSICA
+    default-value: "CORSICA"
     datatype: string
     description: Type of desired scenario where to run the simulation. It should match the input data.
     options:
@@ -57,7 +57,7 @@ parameters:
     options: null
     allow-custom-value: false
   - name: hts
-    default-value: entd
+    default-value: "entd"
     datatype: string
     description: To be developed
     parameter-bounds: null
@@ -84,7 +84,7 @@ parameters:
     options: null
     allow-custom-value: false
   - name: java_memory
-    default-value: 8GB
+    default-value: "8GB"
     datatype: string
     description: Java memory to be used
     parameter-bounds: null
@@ -153,7 +153,7 @@ parameters:
     options: null
     allow-custom-value: false
   - name: output_id
-    default-value: ch
+    default-value: "ch"
     datatype: string
     description: To be defined
     parameter-bounds: null
