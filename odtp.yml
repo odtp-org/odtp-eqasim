@@ -21,7 +21,7 @@ tags:
 # Information about the tools
 tools:
   - tool-name: eqasim-org/ile-de-france
-    tool-author:
+    tool-authors:
       - name: Sebastian Hörl
         orchid: "https://orcid.org/0000-0002-9018-432X"
       - name: S. and M. Balac
@@ -32,7 +32,7 @@ tools:
       doi: null
     tool-license: GPL-2.0 License
   - tool-name: ivt-vpl/populations/ch-zh-synpop
-    tool-author:
+    tool-authors:
       - name: Sebastian Hörl
         orchid: "https://orcid.org/0000-0002-9018-432X"
       - name: S. and M. Balac
